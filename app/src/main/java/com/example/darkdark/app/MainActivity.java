@@ -15,7 +15,8 @@ import java.io.Console;
 
 
 public class MainActivity extends FragmentActivity implements SensorEventListener {
-    private TextView textView;
+    private TextView textCount;
+    private TextView textTotal;
     private SensorManager mSensorManager;
     private Sensor mStepCounterSensor;
     private Sensor mStepDetectorSensor;
@@ -31,7 +32,8 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
             steps = savedInstanceState.getInt(PREV_S) - 1;
         }
         setContentView(R.layout.activity_main);
-        textView = (TextView) findViewById(R.id.count);
+        textCount = (TextView) findViewById(R.id.count);
+        textTotal = (TextView) findViewById(R.id.total);
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mStepCounterSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
         mStepDetectorSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
@@ -70,6 +72,7 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+
         }
 
         return super.onOptionsItemSelected(item);
@@ -79,13 +82,17 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
     {
         Sensor sensor = event.sensor;
         float[] values = event.values;
+        int value = -1;
         if (values.length > 0)
         {
             steps++;
+            value = (int) values[0];
         }
         if (sensor.getType() == Sensor.TYPE_STEP_COUNTER)
         {
-            textView.setText("" + steps);
+            textCount.setText("" + steps);
+            textTotal.setText("" + value);
+
         }
     }
     @Override
