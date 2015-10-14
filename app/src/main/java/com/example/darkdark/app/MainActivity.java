@@ -19,11 +19,17 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
     private SensorManager mSensorManager;
     private Sensor mStepCounterSensor;
     private Sensor mStepDetectorSensor;
+    private int steps = -1;
+    private String PREV_S;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (savedInstanceState != null)
+        {
+            steps = savedInstanceState.getInt(PREV_S) - 1;
+        }
         setContentView(R.layout.activity_main);
         textView = (TextView) findViewById(R.id.count);
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
@@ -73,19 +79,23 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
     {
         Sensor sensor = event.sensor;
         float[] values = event.values;
-        int value = -1;
         if (values.length > 0)
         {
-            value = (int) values[0];
+            steps++;
         }
         if (sensor.getType() == Sensor.TYPE_STEP_COUNTER)
         {
-            textView.setText("" + value);
+            textView.setText("" + steps);
         }
     }
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy)
     {
 
+    }
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putInt(PREV_S, steps);
+        super.onSaveInstanceState(savedInstanceState);
     }
 }
