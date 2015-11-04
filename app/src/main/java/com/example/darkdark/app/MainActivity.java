@@ -179,7 +179,9 @@ public class MainActivity extends AppCompatActivity/*FragmentActivity*/ implemen
 //    }
 //    @Override
     protected void onSaveInstanceState(Bundle savedInstanceState) {
-        savedInstanceState.putInt(PREV_S, steps);
+        //SecFragment fragment = (SecFragment) getSupportFragmentManager().findFragmentById(R.id.frag1);
+        //int total = fragment.gettotal();
+        //savedInstanceState.putInt(PREV_S, total);
         super.onSaveInstanceState(savedInstanceState);
     }
 

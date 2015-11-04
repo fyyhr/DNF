@@ -37,6 +37,8 @@ public class SecFragment extends Fragment implements SensorEventListener{
     private SensorManager mSensorManager;
     private Sensor mStepCounterSensor;
     private Sensor mStepDetectorSensor;
+    private int tSteps;
+    private int cSteps = -1;
     boolean activityRunning;
 
     // TODO: Rename and change types of parameters
@@ -126,9 +128,16 @@ public class SecFragment extends Fragment implements SensorEventListener{
     @Override
     public void onSensorChanged(SensorEvent event) {
         if(activityRunning){
+            textTotal.setText(String.valueOf((int) event.values[0]));
+            String tCount = textTotal.getText().toString();
+            int tSteps1 = Integer.parseInt(tCount);
+            if (tSteps != tSteps1)
+            {
+                cSteps++;
+                textCount.setText(String.valueOf(cSteps));
+            }
+            tSteps = tSteps1;
 
-
-            textCount.setText(String.valueOf((int) event.values[0]));
             //added (int) so no decimal
         }
     }
@@ -174,8 +183,13 @@ public class SecFragment extends Fragment implements SensorEventListener{
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
     }
-
-
-
+    public int getcount()
+    {
+        return cSteps;
+    }
+    public int gettotal()
+    {
+        return tSteps;
+    }
 
 }
