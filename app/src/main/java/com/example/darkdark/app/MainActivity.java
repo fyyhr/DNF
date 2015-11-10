@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.hardware.*;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -56,6 +58,21 @@ public class MainActivity extends AppCompatActivity/*FragmentActivity*/ implemen
     // <---- 10/29
 
 
+
+    //11/7 ---->
+    private SharedPreferences mPrefs;
+
+    EditText mHeight;
+    EditText mWeight;
+
+    TextView mCount;
+    TextView mTotal;
+
+    public static final String DEFAULT="N/A";
+
+
+    // <---- 11/7
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -76,6 +93,12 @@ public class MainActivity extends AppCompatActivity/*FragmentActivity*/ implemen
         mTabLayout.setTabsFromPagerAdapter(mAdapter);
         mTabLayout.setupWithViewPager(mPager);
         mPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
+
+        //Shared preference stuff 11/7 ---->
+        SharedPreferences mPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+
+
+        // 11/7 <----
 
 //        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 //        mStepCounterSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
@@ -103,9 +126,47 @@ public class MainActivity extends AppCompatActivity/*FragmentActivity*/ implemen
 
     }
 
+    public void save(View view){
+
+        SharedPreferences sharedPreferences =getSharedPreferences("MyData", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("height",mHeight.getText().toString()); //stores height data with key "height"
+        editor.putString("weight",mWeight.getText().toString()); //stores weight data with key "weight"
+
+        editor.commit(); //commits the data
+
+        Toast.makeText(this, "data was saved", Toast.LENGTH_LONG).show();
+
+
+    }
+
+    public void load(View view){
+        SharedPreferences sharedPreferences =getSharedPreferences("MyData",Context.MODE_PRIVATE);
+        String count = sharedPreferences.getString("height", DEFAULT); //initialized default height data with key "height"
+        String total = sharedPreferences.getString("weight",DEFAULT); //initialized default weight data with key "weight"
+
+        if (count.equals(DEFAULT)||total.equals(DEFAULT))
+        {
+
+            Toast.makeText(this, "No data found", Toast.LENGTH_SHORT).show();
+
+        }
+
+        //for testing
+        else{
+            Toast.makeText(this, "Data Loaded", Toast.LENGTH_SHORT).show();
+            mCount.setText(count);
+            mTotal.setText(total);
+
+        }
+
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
+
+
 //        activityRunning = true;
 //        Sensor countSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
 //        if (countSensor != null) {
@@ -122,6 +183,9 @@ public class MainActivity extends AppCompatActivity/*FragmentActivity*/ implemen
         super.onPause();
        // activityRunning = false;
     }
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
