@@ -2,6 +2,7 @@ package com.example.darkdark.app;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 //import android.app.Fragment;
@@ -23,7 +24,7 @@ import android.widget.Toast;
  * Use the {@link ThirdFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ThirdFragment extends Fragment {
+public class ThirdFragment extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -40,6 +41,8 @@ public class ThirdFragment extends Fragment {
 
     private TextView show_Weight;
     private TextView show_Height;
+
+    private Button applyChange;
 
     /**
      * Use this factory method to create a new instance of
@@ -81,10 +84,12 @@ public class ThirdFragment extends Fragment {
         edit_Height = (EditText) view.findViewById(R.id.editHeight);
         show_Weight = (TextView) view.findViewById(R.id.showWeight);
         show_Height = (TextView)  view.findViewById(R.id.showHeight);
+        applyChange = (Button) view.findViewById(R.id.buttonWH);
+        applyChange.setOnClickListener(this);
         return view;
     }
 
-    public void applyChange(View view) {
+    public void onClick(View view) {
             switch(view.getId()) {
 
                 case R.id.buttonWH:
