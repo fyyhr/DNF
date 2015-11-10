@@ -19,9 +19,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v4.app.Fragment;
@@ -39,36 +37,29 @@ public class MainActivity extends AppCompatActivity/*FragmentActivity*/ implemen
                                                                                 SecondFragment.OnFragmentInteractionListener,
                                                                                 ThirdFragment.OnFragmentInteractionListener {
 
+    public static final String DEFAULT="N/A";
 //    private TextView textCount;
 //    private TextView textTotal;
     public SensorManager mSensorManager;
     public Sensor mStepCounterSensor;
     public Sensor mStepDetectorSensor;
-    private int steps = -1;
-    private String PREV_S;
-
     // 10/29 --->
     boolean activityRunning;
+    EditText mHeight;
+    EditText mWeight;
+    TextView mCount;
+    TextView mTotal;
+    private int steps = -1;
+
+
+    // <---- 10/29
+    private String PREV_S;
     private Toolbar mToolbar; //v7 widget supports older devices
     private TabLayout mTabLayout;
     private ViewPager mPager;
     private MyPagerAdapter mAdapter;
-
-
-    // <---- 10/29
-
-
-
     //11/7 ---->
     private SharedPreferences mPrefs;
-
-    EditText mHeight;
-    EditText mWeight;
-
-    TextView mCount;
-    TextView mTotal;
-
-    public static final String DEFAULT="N/A";
 
 
     // <---- 11/7
