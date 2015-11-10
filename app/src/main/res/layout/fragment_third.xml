@@ -1,10 +1,56 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" tools:context="com.example.darkdark.app.ThirdFragment"
     android:background="#FFF000">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Apply"
+        android:id="@+id/buttonWH"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
+        android:onClick="applyChange"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/editWeight"
+        android:layout_above="@+id/buttonWH"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="39dp"
+        android:text="Enter Weight" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/editHeight"
+        android:layout_above="@+id/buttonWH"
+        android:layout_alignParentStart="true"
+        android:text="Enter Height" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/showWeight"
+        android:layout_alignTop="@+id/editWeight"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/showHeight"
+        android:layout_alignTop="@+id/editHeight"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>
