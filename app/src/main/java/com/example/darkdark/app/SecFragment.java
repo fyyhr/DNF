@@ -35,19 +35,14 @@ public class SecFragment extends Fragment implements SensorEventListener{
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    boolean activityRunning;
     private TextView textCount;
     private TextView textTotal;
     private SensorManager mSensorManager;
     private Sensor mStepCounterSensor;
-    private Sensor mStepDetectorSensor;
-    private int tSteps;
     private int cSteps = -1;
-    boolean activityRunning;
-    private int previous;
-    private static final int DEFAULT=0;
-     private int month=-1;
+    private int month=-1;
     private int date = -1;
-    private int count =0;
     private int lastSteps;
 
 
@@ -57,6 +52,10 @@ public class SecFragment extends Fragment implements SensorEventListener{
 
     private OnFragmentInteractionListener mListener;
 
+
+    public SecFragment() {
+        // Required empty public constructor
+    }
 
     /**
      * Use this factory method to create a new instance of
@@ -74,10 +73,6 @@ public class SecFragment extends Fragment implements SensorEventListener{
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
-    }
-
-    public SecFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -281,6 +276,11 @@ public class SecFragment extends Fragment implements SensorEventListener{
 
     }
 
+    public int getcount()
+    {
+        return cSteps;
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -294,14 +294,6 @@ public class SecFragment extends Fragment implements SensorEventListener{
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
-    }
-    public int getcount()
-    {
-        return cSteps;
-    }
-    public int gettotal()
-    {
-        return tSteps;
     }
 
 }

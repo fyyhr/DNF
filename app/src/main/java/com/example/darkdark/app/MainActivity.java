@@ -117,41 +117,6 @@ public class MainActivity extends AppCompatActivity/*FragmentActivity*/ implemen
 
     }
 
-    public void save(View view){
-
-        SharedPreferences sharedPreferences =getSharedPreferences("MyData", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("height",mHeight.getText().toString()); //stores height data with key "height"
-        editor.putString("weight",mWeight.getText().toString()); //stores weight data with key "weight"
-
-        editor.commit(); //commits the data
-
-        Toast.makeText(this, "data was saved", Toast.LENGTH_LONG).show();
-
-
-    }
-
-    public void load(View view){
-        SharedPreferences sharedPreferences =getSharedPreferences("MyData",Context.MODE_PRIVATE);
-        String count = sharedPreferences.getString("height", DEFAULT); //initialized default height data with key "height"
-        String total = sharedPreferences.getString("weight",DEFAULT); //initialized default weight data with key "weight"
-
-        if (count.equals(DEFAULT)||total.equals(DEFAULT))
-        {
-
-            Toast.makeText(this, "No data found", Toast.LENGTH_SHORT).show();
-
-        }
-
-        //for testing
-        else{
-            Toast.makeText(this, "Data Loaded", Toast.LENGTH_SHORT).show();
-            mCount.setText(count);
-            mTotal.setText(total);
-
-        }
-
-    }
 
     @Override
     protected void onResume() {
