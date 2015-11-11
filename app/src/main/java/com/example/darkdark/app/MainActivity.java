@@ -85,32 +85,8 @@ public class MainActivity extends AppCompatActivity/*FragmentActivity*/ implemen
         mTabLayout.setupWithViewPager(mPager);
         mPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
 
-        //Shared preference stuff 11/7 ---->
         SharedPreferences mPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
 
-
-        // 11/7 <----
-
-//        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-//        mStepCounterSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
-//        mStepDetectorSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
-
-        //fragment manager stuff to check if the fragment worked i guess,
-        //this is unnecessary when implementing viewpager. since its taken care of.
-//         SecFragment frag = new SecFragment();
-//         FragmentManager manager= getSupportFragmentManager();
-//         android.support.v4.app.FragmentTransaction transaction= manager.beginTransaction();
-//         transaction.add(R.id.mainthing,frag,"MainFragment");
-//         transaction.commit();
-
-        // <---
-        //the shit below needs to go below this fragment manager stuff FUCK, give me back all of my time T_T
-
-//        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-//        mStepCounterSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
-//        mStepDetectorSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
-//       textCount = (TextView) findViewById(R.id.count);
-//        textTotal = (TextView) findViewById(R.id.total);
 
 
 
@@ -123,15 +99,6 @@ public class MainActivity extends AppCompatActivity/*FragmentActivity*/ implemen
         super.onResume();
 
 
-//        activityRunning = true;
-//        Sensor countSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
-//        if (countSensor != null) {
-//            mSensorManager.registerListener(this, countSensor, SensorManager.SENSOR_DELAY_UI);
-//        }
-//        //mSensorManager.registerListener(this, mStepDetectorSensor, SensorManager.SENSOR_DELAY_FASTEST);
-//        else {
-//            Toast.makeText(this, "Count sensor not available!", Toast.LENGTH_LONG).show();
-//        }
     }
     @Override
     protected void onPause()
@@ -166,38 +133,6 @@ public class MainActivity extends AppCompatActivity/*FragmentActivity*/ implemen
         return super.onOptionsItemSelected(item);
     }
 
-//    public void onSensorChanged(SensorEvent event)
-//    {
-//        /*Sensor sensor = event.sensor;
-//        float[] values = event.values;
-//        int value = -1;
-//        if (values.length > 0)
-//        {
-//            steps++;
-//            value = (int) values[0];
-//        }
-//        if (sensor.getType() == Sensor.TYPE_STEP_COUNTER)
-//        {
-//            textCount.setText("" + steps);
-//            textTotal.setText("" + value);
-//
-//        }*/
-//        if(activityRunning){
-//
-//
-//                textCount.setText(String.valueOf((int) event.values[0]));
-//                //added (int) so no decimal
-//
-//
-//        }
-//
-//    }
-//    @Override
-//    public void onAccuracyChanged(Sensor sensor, int accuracy)
-//    {
-//
-//    }
-//    @Override
     protected void onSaveInstanceState(Bundle savedInstanceState) {
         //SecFragment fragment = (SecFragment) getSupportFragmentManager().findFragmentById(R.id.frag1);
         //int total = fragment.gettotal();
@@ -207,26 +142,9 @@ public class MainActivity extends AppCompatActivity/*FragmentActivity*/ implemen
 
     @Override
     public void onFragmentInteraction(Uri uri) {
-        Toast.makeText(this,"Success",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this,"Success",Toast.LENGTH_SHORT).show();
 
     }
-
-
-    //
-//    public static class MyFragment extends Fragment{
-//        public MyFragment(){
-//
-//        }
-//
-//        //public static MyFragment newInstance(int pageN)
-//
-//        public View onCreateView(LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState){
-//            View myFragmentView = inflater.inflate(R.layout.counter_info,container,false);
-//
-//            return myFragmentView;
-//        }
-//    }
-
 
 
     //For TABLAYOUT CRAP
@@ -242,14 +160,12 @@ public class MainActivity extends AppCompatActivity/*FragmentActivity*/ implemen
         {
             switch(position) {
 
-                case 0:
-                    return SecFragment.newInstance("FirstFragment", "1");
                 case 1:
                     return SecondFragment.newInstance("2ndFragment", "2");
                 case 2:
-                    return ThirdFragment.newInstance("3rdFragment", "3");
+                    return ThirdFragment.newInstance("3rdFragment", "Biometrics");
                 default:
-                    return SecFragment.newInstance("FirstFragment", "1");
+                    return SecFragment.newInstance("FirstFragment", "Main");
             }
             //return fragment at the position
         }
@@ -262,9 +178,9 @@ public class MainActivity extends AppCompatActivity/*FragmentActivity*/ implemen
         public CharSequence getPageTitle(int position){
 
             switch(position){
-                case 0: return ""+position;
-                case 1: return ""+position;
-                case 2: return ""+position;
+                case 0: return "Main";
+                case 1: return "History";
+                case 2: return "Biometrics";
                     default: return "0";
             }
 

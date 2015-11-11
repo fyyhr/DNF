@@ -77,7 +77,7 @@ public class SecFragment extends Fragment implements SensorEventListener{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Toast.makeText(getActivity(),"ONCREATE CALLLED!", Toast.LENGTH_LONG).show();
+        //Toast.makeText(getActivity(),"ONCREATE CALLLED!", Toast.LENGTH_LONG).show();
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -162,7 +162,7 @@ public class SecFragment extends Fragment implements SensorEventListener{
             if (lastSteps == 0) {
                 lastSteps = (int) event.values[0]; //check
 
-                Toast.makeText(getActivity(), "!!!!laststeps was 0 so:" + lastSteps, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "!!!!laststeps was 0 so:" + lastSteps, Toast.LENGTH_SHORT).show();
 
                 int checkCount = mPrefs.getInt("Count" + month + date, -1);
                 //this is for the case right after oncreateview
@@ -170,7 +170,7 @@ public class SecFragment extends Fragment implements SensorEventListener{
                 //else set it to whatever it was earlier today. this is for the
                 //case that the app is closed and onresume is recalled, setting laststeps.
                 if (checkCount == -1) {
-                    Toast.makeText(getActivity(), "No data found", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getActivity(), "No data found", Toast.LENGTH_SHORT).show();
                     textCount.setText("0");
                 } else {
                     textCount.setText(String.valueOf(checkCount));
@@ -181,7 +181,7 @@ public class SecFragment extends Fragment implements SensorEventListener{
 
             else if (lastSteps != (int) event.values[0]) {
 
-                Toast.makeText(getActivity(), "LASTSTEPS: "+lastSteps+" VALUE[0]: "+(int) event.values[0], Toast.LENGTH_LONG).show();
+                //Toast.makeText(getActivity(), "LASTSTEPS: "+lastSteps+" VALUE[0]: "+(int) event.values[0], Toast.LENGTH_LONG).show();
                 int offsetCount = ((int) event.values[0] - lastSteps);
                 if (offsetCount <= 0) {
                     offsetCount = 0;
@@ -212,7 +212,7 @@ public class SecFragment extends Fragment implements SensorEventListener{
     @Override
     public void onResume() {
         super.onResume();
-        Toast.makeText(getActivity(),"ONRESUME CALLLED!", Toast.LENGTH_LONG).show();
+        //Toast.makeText(getActivity(),"ONRESUME CALLLED!", Toast.LENGTH_LONG).show();
 
         Calendar calendar = Calendar.getInstance();
         month = calendar.get(Calendar.MONTH);
@@ -223,7 +223,7 @@ public class SecFragment extends Fragment implements SensorEventListener{
             SharedPreferences.Editor editor = mPrefs.edit();
             int checkLastSteps = mPrefs.getInt("Last Steps" + month + date, 0);
 
-            Toast.makeText(getActivity(), "LASTSTEPS: "+lastSteps+" CheckLastSteos: "+checkLastSteps, Toast.LENGTH_LONG).show();
+            //Toast.makeText(getActivity(), "LASTSTEPS: "+lastSteps+" CheckLastSteos: "+checkLastSteps, Toast.LENGTH_LONG).show();
             if (checkLastSteps == 0) {
                 lastSteps = 0;
             } else {
@@ -235,7 +235,7 @@ public class SecFragment extends Fragment implements SensorEventListener{
             int checkCount = mPrefs.getInt("Count" + month + date, -1);
 
             if (checkCount == -1) {
-                Toast.makeText(getActivity(), "No data found", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "No data found", Toast.LENGTH_SHORT).show();
                 textCount.setText("0");
             } else {
                 textCount.setText(String.valueOf(checkCount));
@@ -243,7 +243,7 @@ public class SecFragment extends Fragment implements SensorEventListener{
 
             int checkTotal = Integer.parseInt(mPrefs.getString("textTotal" + month + date, "-1"));
             if (checkTotal == -1) {
-                Toast.makeText(getActivity(), "No data found", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "No data found", Toast.LENGTH_SHORT).show();
                 //textCount.setText("0");
             } else {
                 textTotal.setText(String.valueOf(checkTotal));
@@ -260,7 +260,7 @@ public class SecFragment extends Fragment implements SensorEventListener{
         }
         //mSensorManager.registerListener(this, mStepDetectorSensor, SensorManager.SENSOR_DELAY_FASTEST);
         else {
-            Toast.makeText(getActivity(),"Count sensor not available!", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getActivity(),"Count sensor not available!", Toast.LENGTH_LONG).show();
         }
     }
 

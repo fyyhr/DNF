@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" tools:context="com.example.darkdark.app.ThirdFragment"
-    android:background="#FFF000">
+    android:background="#FFFFFF">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -39,7 +39,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
         android:id="@+id/showWeight"
         android:layout_alignTop="@+id/editWeight"
         android:layout_alignParentEnd="true" />
@@ -48,7 +47,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
         android:id="@+id/showHeight"
         android:layout_alignTop="@+id/editHeight"
         android:layout_alignParentEnd="true" />
@@ -57,7 +55,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
         android:id="@+id/showStepLength"
         android:layout_centerVertical="true"
         android:layout_alignParentEnd="true" />
