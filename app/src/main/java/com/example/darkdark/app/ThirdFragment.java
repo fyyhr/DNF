@@ -35,12 +35,15 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
     private String mParam1;
     private String mParam2;
 
+    private double step_length = -1;
+
     private OnFragmentInteractionListener mListener;
     private EditText edit_Weight;
     private EditText edit_Height;
 
     private TextView show_Weight;
     private TextView show_Height;
+    private TextView show_StepStride;
 
     private Button applyChange;
 
@@ -84,6 +87,7 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
         edit_Height = (EditText) view.findViewById(R.id.editHeight);
         show_Weight = (TextView) view.findViewById(R.id.showWeight);
         show_Height = (TextView)  view.findViewById(R.id.showHeight);
+        show_StepStride = (TextView) view.findViewById(R.id.showStepLength);
         applyChange = (Button) view.findViewById(R.id.buttonWH);
         applyChange.setOnClickListener(this);
         return view;
@@ -107,22 +111,53 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
                     String height = sharedPreferences.getString("height", DEFAULT); //initialized default height data with key "height"
                     String weight = sharedPreferences.getString("weight", DEFAULT); //initialized default weight data with key "weight"
 
+
                     if (height.equals(DEFAULT) || weight.equals(DEFAULT)) {
 
+                        step_length = 0;
                         Toast.makeText(getContext(), "No data found", Toast.LENGTH_SHORT).show();
 
                     }
 
                     //for testing
                     else {
+                        step_length= Float.parseFloat(height) * 0.413 *100;
                         Toast.makeText(getContext(), "Data Loaded", Toast.LENGTH_SHORT).show();
                         show_Height.setText(height);
                         show_Weight.setText(weight);
 
                     }
+
+                    String stepstride_str = String.format("%.2f",step_length);
+                    Toast.makeText(getContext(), "gettttttt " + stepstride_str, Toast.LENGTH_LONG).show();
+                    editor.putString("step_stride", stepstride_str);
+                    editor.commit();
+                    String stepstride_load = sharedPreferences.getString("step_stride",DEFAULT);
+
+                    //Toast.makeText(getContext(), "gettttttt " + stepstride_load, Toast.LENGTH_LONG).show();
+                    if (stepstride_load.equals(DEFAULT)) {
+
+                        //step_length = 0;
+                        Toast.makeText(getContext(), "No data found", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                    //for testing
+                    else {
+                       // step_length= Float.parseFloat(height) * 0.413;
+
+                        Toast.makeText(getContext(), "Data Loaded stepstride_load", Toast.LENGTH_SHORT).show();
+                        //show_Height.setText(height);
+                       // show_Weight.setText(weight);
+                        show_StepStride.setText(stepstride_load);
+
+                    }
+
+
                 }break;
             }
     }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

@@ -53,4 +53,13 @@
         android:layout_alignTop="@+id/editHeight"
         android:layout_alignParentEnd="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/showStepLength"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true" />
+
 </RelativeLayout>
