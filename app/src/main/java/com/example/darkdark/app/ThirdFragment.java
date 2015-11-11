@@ -144,7 +144,6 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
 
                     //for testing
                     else {
-                       // step_length= Float.parseFloat(height) * 0.413;
 
                         //Toast.makeText(getContext(), "Data Loaded stepstride_load", Toast.LENGTH_SHORT).show();
                         //show_Height.setText(height);
