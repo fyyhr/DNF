@@ -1,6 +1,8 @@
 package com.example.darkdark.app;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 //import android.app.Fragment;
@@ -59,6 +61,10 @@ public class SecondFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        SharedPreferences mPrefs = getActivity().getSharedPreferences("MyData", Context.MODE_PRIVATE);
+        //TODO: retrieve yesterdays data
+        //TODO: add up last months steps (maybe?)
+        //TODO: move lifetime steps to this fragment
     }
 
     @Override

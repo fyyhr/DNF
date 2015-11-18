@@ -10,9 +10,9 @@
         android:layout_height="wrap_content"
         android:text="Apply"
         android:id="@+id/buttonWH"
+        android:onClick="applyChange"
         android:layout_centerVertical="true"
-        android:layout_alignParentStart="true"
-        android:onClick="applyChange"/>
+        android:layout_alignStart="@+id/editHeight" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -20,10 +20,9 @@
         android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/editWeight"
-        android:layout_above="@+id/buttonWH"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="39dp"
-        android:text="Enter Weight" />
+        android:hint="Enter Weight"
+        android:layout_above="@+id/editHeight"
+        android:layout_alignStart="@+id/editHeight" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -31,9 +30,10 @@
         android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/editHeight"
+        android:hint="Enter Height"
         android:layout_above="@+id/buttonWH"
         android:layout_alignParentStart="true"
-        android:text="Enter Height" />
+        android:layout_marginStart="31dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -41,7 +41,8 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/showWeight"
         android:layout_alignTop="@+id/editWeight"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:paddingRight="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -49,7 +50,8 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/showHeight"
         android:layout_alignTop="@+id/editHeight"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:paddingRight="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -57,6 +59,43 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/showStepLength"
         android:layout_centerVertical="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:paddingRight="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Calories Burned"
+        android:id="@+id/textView7"
+        android:layout_below="@+id/buttonWH"
+        android:layout_alignStart="@+id/buttonWH"
+        android:layout_marginTop="47dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Life Extension"
+        android:id="@+id/textView8"
+        android:layout_below="@+id/textView7"
+        android:layout_alignStart="@+id/textView7"
+        android:layout_marginTop="56dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/calories"
+        android:layout_below="@+id/textView7"
+        android:layout_alignStart="@+id/textView7" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/lifer"
+        android:layout_below="@+id/textView8"
+        android:layout_alignStart="@+id/textView8" />
 
 </RelativeLayout>

@@ -152,9 +152,9 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
 
                     }
 
-
                 }break;
             }
+
     }
 
 
