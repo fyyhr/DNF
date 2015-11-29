@@ -94,7 +94,6 @@ public class SecFragment extends Fragment implements SensorEventListener{
         View view = inflater.inflate(R.layout.fragment_sec,
                 container, false);
 
-
         //lastSteps = 0;
         textCount = (TextView) view.findViewById(R.id.count);
         textTotal = (TextView) view.findViewById(R.id.total);
