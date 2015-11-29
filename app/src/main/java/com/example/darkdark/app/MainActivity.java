@@ -102,6 +102,14 @@ public class MainActivity extends AppCompatActivity/*FragmentActivity*/ implemen
 
         mPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
         setupTabIcons();
+
+
+
+
+
+
+
+        //fd
         SharedPreferences mPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
 
 
