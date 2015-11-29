@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.hardware.*;
 import android.net.Uri;
 import android.os.Bundle;
@@ -24,6 +25,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v4.app.Fragment;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -35,7 +39,8 @@ import java.io.Console;
 
 public class MainActivity extends AppCompatActivity/*FragmentActivity*/ implements SecFragment.OnFragmentInteractionListener,
                                                                                 SecondFragment.OnFragmentInteractionListener,
-                                                                                ThirdFragment.OnFragmentInteractionListener {
+                                                                                ThirdFragment.OnFragmentInteractionListener,
+                                                                                Animation.OnFragmentInteractionListener{
 
     public static final String DEFAULT="N/A";
 //    private TextView textCount;
@@ -64,33 +69,55 @@ public class MainActivity extends AppCompatActivity/*FragmentActivity*/ implemen
 
     // <---- 11/7
 
+    //----> 11/28
+    private int[] tabIcons = {
+            R.drawable.ic_tab_home,
+            R.drawable.ic_tab_history,
+            R.drawable.ic_tab_biometrics,
+            R.drawable.ic_tab_poring
+    };
+
+    // 11/28 <---
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
 
-        if (savedInstanceState != null)
-        {
-            steps = savedInstanceState.getInt(PREV_S) - 1;
-        }
+//        if (savedInstanceState != null)
+//        {
+//            steps = savedInstanceState.getInt(PREV_S) - 1;
+//        }
         setContentView(R.layout.fragment_main);//changed from activity_main cause it was just calling fragment_main anyway
 
         mToolbar = (Toolbar) findViewById(R.id.appbar);
         setSupportActionBar(mToolbar);
+
         mAdapter = new MyPagerAdapter(getSupportFragmentManager());
         mTabLayout = (TabLayout) findViewById(R.id.tab_layout);
         mPager = (ViewPager) findViewById(R.id.pager);
         mPager.setAdapter(mAdapter);
         mTabLayout.setTabsFromPagerAdapter(mAdapter);
         mTabLayout.setupWithViewPager(mPager);
-        mPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
 
+        mPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
+        setupTabIcons();
         SharedPreferences mPrefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
 
 
+    }
 
+    private void setupTabIcons() {
 
+        try {
 
+            mTabLayout.getTabAt(0).setIcon(tabIcons[0]);
+            mTabLayout.getTabAt(1).setIcon(tabIcons[1]);
+            mTabLayout.getTabAt(2).setIcon(tabIcons[2]);
+            mTabLayout.getTabAt(3).setIcon(tabIcons[3]);
+        }catch(NullPointerException e){
+            System.out.println(e.toString());
+        }
     }
 
 
@@ -101,8 +128,7 @@ public class MainActivity extends AppCompatActivity/*FragmentActivity*/ implemen
 
     }
     @Override
-    protected void onPause()
-    {
+    protected void onPause() {
         super.onPause();
        // activityRunning = false;
     }
@@ -164,6 +190,8 @@ public class MainActivity extends AppCompatActivity/*FragmentActivity*/ implemen
                     return SecondFragment.newInstance("2ndFragment", "2");
                 case 2:
                     return ThirdFragment.newInstance("3rdFragment", "Biometrics");
+                case 3:
+                    return Animation.newInstance("4thFragment","Animation");
                 default:
                     return SecFragment.newInstance("FirstFragment", "Main");
             }
@@ -172,17 +200,27 @@ public class MainActivity extends AppCompatActivity/*FragmentActivity*/ implemen
 
         @Override
         public int getCount() {
-            return 3;
+            return 4;
         }
+        
+//        public Drawable getPageTitle(int position){
+//
+//        }
+
+
+
+
 
         public CharSequence getPageTitle(int position){
 
-            switch(position){
-                case 0: return "Main";
-                case 1: return "History";
-                case 2: return "Biometrics";
-                    default: return "0";
-            }
+            return null;
+//            switch(position){
+//                case 0: return "Main";
+//                case 1: return "History";
+//                case 2: return "Biometrics";
+//                case 3: return "Poring";
+//                default: return "0";
+//            }
 
         }
     }
