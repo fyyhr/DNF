@@ -49,45 +49,5 @@
         />
     <!--weight of 1 meaning it will take the rest of the page-->
 
-    <!--<TextView android:textColor="@android:color/black"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="Total steps"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:paddingLeft="@dimen/activity_horizontal_margin"-->
-        <!--android:paddingTop="@dimen/activity_horizontal_margin"-->
-        <!--android:paddingRight="@dimen/activity_vertical_margin"-->
-        <!--android:paddingBottom="@dimen/activity_vertical_margin" />-->
-
-    <!--<TextView android:id="@+id/count"-->
-        <!--android:textSize="36dp"-->
-        <!--android:textColor="@android:color/black"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:paddingLeft="@dimen/activity_horizontal_margin"-->
-        <!--android:paddingTop="@dimen/activity_horizontal_margin"-->
-        <!--android:paddingRight="@dimen/activity_vertical_margin"-->
-        <!--android:paddingBottom="@dimen/activity_vertical_margin" />-->
-    <!--<TextView android:textColor="@android:color/black"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="Total steps since reboot"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:paddingLeft="@dimen/activity_horizontal_margin"-->
-        <!--android:paddingTop="@dimen/activity_horizontal_margin"-->
-        <!--android:paddingRight="@dimen/activity_vertical_margin"-->
-        <!--android:paddingBottom="@dimen/activity_vertical_margin" />-->
-    <!--<TextView android:id="@+id/total"-->
-        <!--android:textSize="32dp"-->
-        <!--android:textColor="@android:color/black"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:paddingLeft="@dimen/activity_horizontal_margin"-->
-        <!--android:paddingTop="@dimen/activity_horizontal_margin"-->
-        <!--android:paddingRight="@dimen/activity_vertical_margin"-->
-        <!--android:paddingBottom="@dimen/activity_vertical_margin" />-->
-
 
 </LinearLayout>
