@@ -71,10 +71,10 @@ public class MainActivity extends AppCompatActivity/*FragmentActivity*/ implemen
 
     //----> 11/28
     private int[] tabIcons = {
-            //R.drawable.ic_tab_home,
+            R.drawable.ic_tab_home,
             R.drawable.ic_tab_history,
-            //R.drawable.ic_tab_biometrics,
-            //R.drawable.ic_tab_poring
+            R.drawable.ic_tab_biometrics,
+            R.drawable.ic_tab_poring
     };
 
     // 11/28 <---
@@ -109,15 +109,13 @@ public class MainActivity extends AppCompatActivity/*FragmentActivity*/ implemen
 
     private void setupTabIcons() {
 
-        try {
+
 
             mTabLayout.getTabAt(0).setIcon(tabIcons[0]);
             mTabLayout.getTabAt(1).setIcon(tabIcons[1]);
             mTabLayout.getTabAt(2).setIcon(tabIcons[2]);
             mTabLayout.getTabAt(3).setIcon(tabIcons[3]);
-        }catch(NullPointerException e){
-            System.out.println(e.toString());
-        }
+
     }
 
 
