@@ -121,7 +121,7 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
 
                     //for testing
                     else {
-                        step_length= Float.parseFloat(height) * 0.413 *100;
+                        step_length= Float.parseFloat(height) * (0.413 /100)/1609.34;
                         Toast.makeText(getContext(), "Data Loaded", Toast.LENGTH_SHORT).show();
                         show_Height.setText(height);
                         show_Weight.setText(weight);
@@ -130,7 +130,7 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
 
                     String stepstride_str = String.format("%.2f",step_length);
                     //Toast.makeText(getContext(), "gettttttt " + stepstride_str, Toast.LENGTH_LONG).show();
-                    editor.putString("step_stride", stepstride_str);
+                    editor.putString("step_stride", Double.toString(step_length)); //changed to steplength from stepstride_str
                     editor.commit();
                     String stepstride_load = sharedPreferences.getString("step_stride",DEFAULT);
 
