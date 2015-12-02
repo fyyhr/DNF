@@ -1,120 +1,312 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" tools:context="com.example.darkdark.app.SecondFragment"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.darkdark.app.SecondFragment"
     android:background="#FFFFFF"
     android:rowCount="8"
     android:columnCount="6">
 
-    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Yesterday&apos;s Steps"
-        android:id="@+id/textView"
-        android:layout_marginStart="31dp"
-        android:layout_marginTop="46dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Last Month&apos;s Steps"
-        android:id="@+id/textView2"
-        android:layout_marginTop="118dp"
-        android:layout_below="@+id/textView"
-        android:layout_alignStart="@+id/textView" />
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinner" />
+        </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Lifetime Steps"
-        android:id="@+id/textView3"
-        android:layout_below="@+id/textView2"
-        android:layout_alignStart="@+id/textView2"
-        android:layout_marginTop="136dp" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Yesterday&apos;s Miles"
-        android:id="@+id/textView4"
-        android:layout_marginEnd="54dp"
-        android:layout_alignTop="@+id/textView"
-        android:layout_alignParentEnd="true" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Small Text"
+                android:id="@+id/date1"
+                android:layout_weight="0.07" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Last Month&apos;s Miles"
-        android:id="@+id/textView5"
-        android:layout_alignTop="@+id/textView2"
-        android:layout_alignStart="@+id/textView4" />
+            <com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                app:rcBackgroundColor="@color/custom_progress_background"
+                app:rcBackgroundPadding="2dp"
+                app:rcRadius="10dp"
+                app:rcMax="500"
+                app:rcProgress="50"
+                app:rcProgressColor="@color/custom_progress_green_progress"
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Lifetime Miles"
-        android:id="@+id/textView6"
-        android:layout_alignBottom="@+id/textView3"
-        android:layout_alignStart="@+id/textView5" />
+                app:rcSecondaryProgress="60"
+                app:rcSecondaryProgressColor="@color/custom_progress_green_progress_half"
+                app:rcTextProgress="jeeeh"
+                app:rcTextProgressColor="@color/text"
+                app:rcTextProgressMargin="10dp"
+                app:rcTextProgressSize="14sp"
+                android:id="@+id/progressOne"
+                android:layout_below="@+id/textView"
+                android:layout_toRightOf="@+id/textView"
+                android:layout_toEndOf="@+id/textView" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/yesterstep"
-        android:layout_below="@+id/textView"
-        android:layout_alignStart="@+id/textView"
-        android:layout_marginTop="31dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Small Text"
+                android:id="@+id/calories1"
+                android:layout_weight="0.07" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/yestermile"
-        android:layout_alignTop="@+id/yesterstep"
-        android:layout_alignStart="@+id/textView4" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Small Text"
+                android:id="@+id/distance1"
+                android:layout_weight="0.07" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/monthstep"
-        android:layout_below="@+id/textView2"
-        android:layout_alignStart="@+id/textView2"
-        android:layout_marginTop="31dp" />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:id = "@+id/lineOne"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/monthmile"
-        android:layout_alignTop="@+id/monthstep"
-        android:layout_alignStart="@+id/textView5" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/allstep"
-        android:layout_below="@+id/textView3"
-        android:layout_alignStart="@+id/textView3"
-        android:layout_marginTop="44dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Small Text"
+                android:id="@+id/date2"
+                android:layout_weight="0.07" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/allmile"
-        android:layout_alignTop="@+id/allstep"
-        android:layout_alignStart="@+id/textView6" />
+            <com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                app:rcBackgroundColor="@color/custom_progress_background"
+                app:rcBackgroundPadding="2dp"
+                app:rcRadius="10dp"
+                app:rcMax="500"
+                app:rcProgress="50"
+                app:rcProgressColor="@color/custom_progress_green_progress"
+                app:rcSecondaryProgress="60"
+                app:rcSecondaryProgressColor="@color/custom_progress_green_progress_half"
+                app:rcTextProgress="2"
+                app:rcTextProgressColor="@color/text"
+                app:rcTextProgressMargin="10dp"
+                app:rcTextProgressSize="14sp"
+                android:id="@+id/progressTwo"
+                android:layout_below="@+id/textView"
+                android:layout_toRightOf="@+id/textView"
+                android:layout_toEndOf="@+id/textView" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Small Text"
+                android:id="@+id/calories2"
+                android:layout_weight="0.07" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Small Text"
+                android:id="@+id/distance2"
+                android:layout_weight="0.07" />
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:id = "@+id/lineTwo"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Small Text"
+                android:id="@+id/date3"
+                android:layout_weight="0.07" />
+
+            <com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                app:rcBackgroundColor="@color/custom_progress_background"
+                app:rcBackgroundPadding="2dp"
+                app:rcRadius="10dp"
+                app:rcMax="500"
+                app:rcProgress="50"
+                app:rcProgressColor="@color/custom_progress_green_progress"
+                app:rcSecondaryProgress="60"
+                app:rcSecondaryProgressColor="@color/custom_progress_green_progress_half"
+                app:rcTextProgress="3"
+                app:rcTextProgressColor="@color/text"
+                app:rcTextProgressMargin="10dp"
+                app:rcTextProgressSize="14sp"
+                android:id="@+id/progressThree"
+                android:layout_below="@+id/textView"
+                android:layout_toRightOf="@+id/textView"
+                android:layout_toEndOf="@+id/textView" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Small Text"
+                android:id="@+id/calories3"
+                android:layout_weight="0.07" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Small Text"
+                android:id="@+id/distance3"
+                android:layout_weight="0.07" />
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:id = "@+id/lineThree"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Small Text"
+                android:id="@+id/date4"
+                android:layout_weight="0.07" />
+
+            <com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                app:rcBackgroundColor="@color/custom_progress_background"
+                app:rcBackgroundPadding="2dp"
+                app:rcRadius="10dp"
+                app:rcMax="500"
+                app:rcProgress="50"
+                app:rcProgressColor="@color/custom_progress_green_progress"
+                app:rcSecondaryProgress="60"
+                app:rcSecondaryProgressColor="@color/custom_progress_green_progress_half"
+                app:rcTextProgress="4"
+                app:rcTextProgressColor="@color/text"
+                app:rcTextProgressMargin="10dp"
+                app:rcTextProgressSize="14sp"
+                android:id="@+id/progressFour"
+                android:layout_below="@+id/textView"
+                android:layout_toRightOf="@+id/textView"
+                android:layout_toEndOf="@+id/textView" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Small Text"
+                android:id="@+id/calories4"
+                android:layout_weight="0.07" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Small Text"
+                android:id="@+id/distance4"
+                android:layout_weight="0.07" />
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:id = "@+id/lineFourth"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Small Text"
+                android:id="@+id/date5"
+                android:layout_weight="0.07" />
+
+            <com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                app:rcBackgroundColor="@color/custom_progress_background"
+                app:rcBackgroundPadding="2dp"
+                app:rcRadius="10dp"
+                app:rcMax="500"
+                app:rcProgress="50"
+                app:rcProgressColor="@color/custom_progress_green_progress"
+                app:rcSecondaryProgress="60"
+                app:rcSecondaryProgressColor="@color/custom_progress_green_progress_half"
+                app:rcTextProgress="5"
+                app:rcTextProgressColor="@color/text"
+                app:rcTextProgressMargin="10dp"
+                app:rcTextProgressSize="14sp"
+                android:id="@+id/progressFive"
+                android:layout_below="@+id/textView"
+                android:layout_toRightOf="@+id/textView"
+                android:layout_toEndOf="@+id/textView" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Small Text"
+                android:id="@+id/calories5"
+                android:layout_weight="0.07" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Small Text"
+                android:id="@+id/distance5"
+                android:layout_weight="0.07" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>
+
+

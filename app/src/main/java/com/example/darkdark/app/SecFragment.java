@@ -40,6 +40,8 @@ public class SecFragment extends Fragment implements SensorEventListener{
     private SensorManager mSensorManager;
     private Sensor mStepCounterSensor;
     private int cSteps = -1;
+    private int dayyear=-1;
+    private int year = -1;
     private int month=-1;
     private int date = -1;
     private int lastSteps;
@@ -104,9 +106,6 @@ public class SecFragment extends Fragment implements SensorEventListener{
 
 
 //        SharedPreferences mPrefs = getActivity().getSharedPreferences("MyData", Context.MODE_PRIVATE);
-
-
-
         return view;
     }
 
@@ -147,8 +146,10 @@ public class SecFragment extends Fragment implements SensorEventListener{
     public void onSensorChanged(SensorEvent event) {
         Calendar calendar = Calendar.getInstance();
 
-        month = calendar.get(Calendar.MONTH);
-        date = calendar.get(Calendar.DATE);
+        year = calendar.get(Calendar.YEAR);
+        dayyear = calendar.get(Calendar.DAY_OF_YEAR);
+        //month = calendar.get(Calendar.MONTH);
+        //date = calendar.get(Calendar.DATE);
 
         if(isAdded()) {
            // Toast.makeText(getActivity(),"ISADDED", Toast.LENGTH_LONG).show();
@@ -163,7 +164,7 @@ public class SecFragment extends Fragment implements SensorEventListener{
 
                 //Toast.makeText(getActivity(), "!!!!laststeps was 0 so:" + lastSteps, Toast.LENGTH_SHORT).show();
 
-                int checkCount = mPrefs.getInt("Count" + month + date, -1);
+                int checkCount = mPrefs.getInt("Count" + year + dayyear, -1);
                 //this is for the case right after oncreateview
                 //if its default -10 that means its the first step of the day
                 //else set it to whatever it was earlier today. this is for the
@@ -186,21 +187,21 @@ public class SecFragment extends Fragment implements SensorEventListener{
                     offsetCount = 0;
                 } else {
 
-                    editor.putInt("Count" + month + date, Integer.parseInt(String.valueOf(textCount.getText())) + offsetCount);
+                    editor.putInt("Count" + year + dayyear, Integer.parseInt(String.valueOf(textCount.getText())) + offsetCount);
                     editor.commit();
-                    textCount.setText(String.valueOf(mPrefs.getInt("Count" + month + date, 0)));
+                    textCount.setText(String.valueOf(mPrefs.getInt("Count" + year + dayyear, 0)));
 
                 }
 
 
             }
             textTotal.setText(String.valueOf((int) event.values[0]));
-            editor.putString("textTotal" + month + date, textTotal.getText().toString());
+            editor.putString("textTotal" + year + dayyear, textTotal.getText().toString());
             editor.commit();
 
 
             lastSteps = (int) event.values[0];
-            editor.putInt("Last Steps" + month + date, lastSteps);
+            editor.putInt("Last Steps" + year + dayyear, lastSteps);
             editor.commit();
 
             //added (int) so no decimal
@@ -214,13 +215,16 @@ public class SecFragment extends Fragment implements SensorEventListener{
         //Toast.makeText(getActivity(),"ONRESUME CALLLED!", Toast.LENGTH_LONG).show();
 
         Calendar calendar = Calendar.getInstance();
-        month = calendar.get(Calendar.MONTH);
-        date = calendar.get(Calendar.DATE);
+
+        year = calendar.get(Calendar.YEAR);
+        dayyear = calendar.get(Calendar.DAY_OF_YEAR);
+       // month = calendar.get(Calendar.MONTH);
+        //date = calendar.get(Calendar.DATE);
         if(isAdded()) {
 
             SharedPreferences mPrefs = getActivity().getSharedPreferences("MyData", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = mPrefs.edit();
-            int checkLastSteps = mPrefs.getInt("Last Steps" + month + date, 0);
+            int checkLastSteps = mPrefs.getInt("Last Steps" + year + dayyear, 0);
 
             //Toast.makeText(getActivity(), "LASTSTEPS: "+lastSteps+" CheckLastSteos: "+checkLastSteps, Toast.LENGTH_LONG).show();
             if (checkLastSteps == 0) {
@@ -231,7 +235,7 @@ public class SecFragment extends Fragment implements SensorEventListener{
             }
 
             //textCount.setText("");
-            int checkCount = mPrefs.getInt("Count" + month + date, -1);
+            int checkCount = mPrefs.getInt("Count" + year + dayyear, -1);
 
             if (checkCount == -1) {
                 //Toast.makeText(getActivity(), "No data found", Toast.LENGTH_SHORT).show();
@@ -240,7 +244,7 @@ public class SecFragment extends Fragment implements SensorEventListener{
                 textCount.setText(String.valueOf(checkCount));
             }
 
-            int checkTotal = Integer.parseInt(mPrefs.getString("textTotal" + month + date, "-1"));
+            int checkTotal = Integer.parseInt(mPrefs.getString("textTotal" + year + dayyear, "-1"));
             if (checkTotal == -1) {
                 //Toast.makeText(getActivity(), "No data found", Toast.LENGTH_SHORT).show();
                 //textCount.setText("0");

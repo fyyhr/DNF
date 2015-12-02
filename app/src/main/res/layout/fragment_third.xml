@@ -68,9 +68,9 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Calories Burned"
         android:id="@+id/textView7"
+        android:layout_marginTop="51dp"
         android:layout_below="@+id/buttonWH"
-        android:layout_alignStart="@+id/buttonWH"
-        android:layout_marginTop="47dp" />
+        android:layout_alignStart="@+id/buttonWH" />
 
     <TextView
         android:layout_width="wrap_content"
