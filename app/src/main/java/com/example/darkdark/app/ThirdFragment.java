@@ -94,18 +94,23 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
     }
 
     public void onClick(View view) {
-            switch(view.getId()) {
+
+        if(!edit_Height.getText().toString().isEmpty()&&!edit_Weight.getText().toString().isEmpty()){
+        switch(view.getId()) {
+
+
 
                 case R.id.buttonWH:
                 if (isAdded()) {
                     SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyData", Context.MODE_PRIVATE);
                     //must use SharedPreferences.Editor to save values
                     SharedPreferences.Editor editor = sharedPreferences.edit();
+                    if(edit_Height.getText().toString()!=null&&edit_Weight.getText().toString()!=null) {
                     editor.putString("height", edit_Height.getText().toString()); //stores height data with key "height"
                     editor.putString("weight", edit_Weight.getText().toString()); //stores weight data with key "weight"
 
                     editor.commit(); //commits the data
-
+                    }
                     Toast.makeText(getContext(), "data was saved", Toast.LENGTH_LONG).show();
 
                     String height = sharedPreferences.getString("height", DEFAULT); //initialized default height data with key "height"
@@ -121,7 +126,7 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
 
                     //for testing
                     else {
-                        step_length= Float.parseFloat(height) * (0.413 /100)/1609.34;
+                          step_length= Float.parseFloat(height) * (0.413 /100)/1609.34;
                         Toast.makeText(getContext(), "Data Loaded", Toast.LENGTH_SHORT).show();
                         show_Height.setText(height);
                         show_Weight.setText(weight);
@@ -156,6 +161,7 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
             }
 
     }
+}
 
 
     // TODO: Rename method, update argument and hook method into UI event

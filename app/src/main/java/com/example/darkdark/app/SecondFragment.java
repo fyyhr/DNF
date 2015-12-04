@@ -212,7 +212,7 @@ public class SecondFragment extends Fragment {
 
     public void calculation(View p) {
 
-        Toast.makeText(getActivity(), "Calc Accessed", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(getActivity(), "Calc Accessed", Toast.LENGTH_SHORT).show();
         //have to change all the month+day to day_of_year
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyData", Context.MODE_PRIVATE);
         Calendar calendar = Calendar.getInstance();
@@ -254,23 +254,23 @@ public class SecondFragment extends Fragment {
 
             String weight = sharedPreferences.getString("weight",DEFAULT);
             if(!weight.equals(DEFAULT)){
+
                 dweight = Double.parseDouble(weight);
-
-
             }
+
 
 
             // <<<<<----
 
             int yester_steps = sharedPreferences.getInt("Count" + fyear + fdayyear, -1);
-            Toast.makeText(getActivity(), "Count" + fyear + fdayyear+"  "+i+": "+yester_steps, Toast.LENGTH_LONG).show();
+            //Toast.makeText(getActivity(), "Count" + fyear + fdayyear+"  "+i+": "+yester_steps, Toast.LENGTH_LONG).show();
             switch (i){
                 case 1:
-                    Toast.makeText(getActivity(), "Step check: "+yester_steps, Toast.LENGTH_LONG).show();
+                   // Toast.makeText(getActivity(), "Step check: "+yester_steps, Toast.LENGTH_LONG).show();
                     if(yester_steps==-1){
                         //add in step_length info.
                         //if default make them invisible
-                        Toast.makeText(getActivity(), "should be GONE!!!!!!", Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(getActivity(), "should be GONE!!!!!!", Toast.LENGTH_SHORT).show();
                         p.findViewById(R.id.date1).setVisibility(View.GONE);
                         p.findViewById(R.id.progressOne).setVisibility(View.GONE);
                         p.findViewById(R.id.calories1).setVisibility(View.GONE);
@@ -280,8 +280,10 @@ public class SecondFragment extends Fragment {
                     else{
 
                         progressOne.setProgressText(Integer.toString(yester_steps));
+
                         progressOne.setProgress(yester_steps);
-                        Toast.makeText(getActivity(),"FDAYYEAR: "+fdayyear,Toast.LENGTH_LONG).show();
+                       if( yester_steps%500 == progressOne.getMax())
+                        //Toast.makeText(getActivity(),"FDAYYEAR: "+fdayyear,Toast.LENGTH_LONG).show();
 
                         dateOne.setText((calendar.get(Calendar.MONTH)+1)+"/" +calendar.get(Calendar.DATE));
                         if(!step_length.equals(DEFAULT)) {
@@ -307,7 +309,7 @@ public class SecondFragment extends Fragment {
                     if(yester_steps==-1){
                         //if default make them invisible
 
-                        Toast.makeText(getActivity(), "TWO should be GONE!!!!!!", Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(getActivity(), "TWO should be GONE!!!!!!", Toast.LENGTH_SHORT).show();
                         p.findViewById(R.id.date2).setVisibility(View.GONE);
                         p.findViewById(R.id.progressTwo).setVisibility(View.GONE);
                         p.findViewById(R.id.calories2).setVisibility(View.GONE);
@@ -337,7 +339,7 @@ public class SecondFragment extends Fragment {
                 case 3:
                     if(yester_steps == -1){
                         //if default make them invisible
-                        Toast.makeText(getActivity(), "THREE should be GONE!!!!!!", Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(getActivity(), "THREE should be GONE!!!!!!", Toast.LENGTH_SHORT).show();
                         p.findViewById(R.id.date3).setVisibility(View.GONE);
                         p.findViewById(R.id.progressThree).setVisibility(View.GONE);
                         p.findViewById(R.id.calories3).setVisibility(View.GONE);

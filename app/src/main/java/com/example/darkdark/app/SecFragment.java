@@ -1,6 +1,17 @@
 package com.example.darkdark.app;
 
 import android.app.Activity;
+
+import android.app.NotificationManager;
+//Notification imports -->
+import android.app.AlarmManager;
+import android.app.Notification;
+import android.media.RingtoneManager;
+import android.os.SystemClock;
+import android.content.Intent;
+
+// <--
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.hardware.Sensor;
@@ -42,11 +53,22 @@ public class SecFragment extends Fragment implements SensorEventListener{
     private int cSteps = -1;
     private int dayyear=-1;
     private int year = -1;
+    private int hourofday = -1;
     private int month=-1;
     private int date = -1;
     private int lastSteps;
 
 
+    //Internal state
+    private boolean moving = false;
+    // NOTIFICATION RELATED
+    // The PendingIntent to launch our activity if the user selects this notification
+    protected PendingIntent mPendingIntent;
+    protected int iNotificationId = 123;
+
+    protected float fSince = 0;
+    protected int iIntervals = 0;
+    protected Notification mNotification;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -152,6 +174,9 @@ public class SecFragment extends Fragment implements SensorEventListener{
         //date = calendar.get(Calendar.DATE);
 
         if(isAdded()) {
+
+           // Toast.makeText(getActivity(),"5 second delay bitches",Toast.LENGTH_LONG).show();
+            scheduleNotification(getNotification("Move a bit!"), 900000);
            // Toast.makeText(getActivity(),"ISADDED", Toast.LENGTH_LONG).show();
 
             SharedPreferences mPrefs = getActivity().getSharedPreferences("MyData", Context.MODE_PRIVATE);
@@ -195,6 +220,8 @@ public class SecFragment extends Fragment implements SensorEventListener{
 
 
             }
+
+
             textTotal.setText(String.valueOf((int) event.values[0]));
             editor.putString("textTotal" + year + dayyear, textTotal.getText().toString());
             editor.commit();
@@ -205,9 +232,50 @@ public class SecFragment extends Fragment implements SensorEventListener{
             editor.commit();
 
             //added (int) so no decimal
+
+
+
         }
+
+
         }
     }
+    private void scheduleNotification(Notification notification, int delay) {
+
+        Intent notificationIntent = new Intent(getActivity(), NotificationPublisher.class);
+        notificationIntent.putExtra(NotificationPublisher.NOTIFICATION_ID, 1);
+        notificationIntent.putExtra(NotificationPublisher.NOTIFICATION, notification);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity(), 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);//this -> getActivity
+
+        long futureInMillis = SystemClock.elapsedRealtime() + delay;
+        AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE); //getActivity
+        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);
+
+
+
+    }
+
+    private Notification getNotification(String content) {
+
+
+        Calendar calendar = Calendar.getInstance();
+        hourofday = calendar.get(Calendar.HOUR_OF_DAY);
+
+
+        Notification.Builder builder = new Notification.Builder(getActivity()); //this to getActivity
+        builder.setContentTitle("Scheduled Notification");
+        builder.setContentText(content);
+        builder.setSmallIcon(R.mipmap.ic_launcher);
+
+        if(!(hourofday >=22||hourofday<=5)) {
+            Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            builder.setSound(alarmSound);
+        }
+
+        return builder.build();
+    }
+
+
 
     @Override
     public void onResume() {
@@ -215,11 +283,9 @@ public class SecFragment extends Fragment implements SensorEventListener{
         //Toast.makeText(getActivity(),"ONRESUME CALLLED!", Toast.LENGTH_LONG).show();
 
         Calendar calendar = Calendar.getInstance();
-
         year = calendar.get(Calendar.YEAR);
         dayyear = calendar.get(Calendar.DAY_OF_YEAR);
-       // month = calendar.get(Calendar.MONTH);
-        //date = calendar.get(Calendar.DATE);
+
         if(isAdded()) {
 
             SharedPreferences mPrefs = getActivity().getSharedPreferences("MyData", Context.MODE_PRIVATE);
@@ -255,11 +321,11 @@ public class SecFragment extends Fragment implements SensorEventListener{
         }
 
         activityRunning = true;
-        //editor.putInt("count",)
-        //mStepDetectorSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
+        //setMoving(activityRunning);
+
        mStepCounterSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
         if (mStepCounterSensor != null) {
-            mSensorManager.registerListener(this,mStepCounterSensor, SensorManager.SENSOR_DELAY_UI);
+            mSensorManager.registerListener(this,mStepCounterSensor, SensorManager.SENSOR_DELAY_FASTEST );
         }
         //mSensorManager.registerListener(this, mStepDetectorSensor, SensorManager.SENSOR_DELAY_FASTEST);
         else {
@@ -270,7 +336,8 @@ public class SecFragment extends Fragment implements SensorEventListener{
     @Override
     public void onPause() {
         super.onPause();
-        activityRunning=false;
+        //activityRunning=false;
+
     }
 
     @Override
@@ -282,6 +349,8 @@ public class SecFragment extends Fragment implements SensorEventListener{
     {
         return cSteps;
     }
+
+
 
     /**
      * This interface must be implemented by activities that contain this
