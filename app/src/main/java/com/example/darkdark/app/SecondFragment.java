@@ -130,8 +130,8 @@ public class SecondFragment extends Fragment {
 //        month_Miles = (TextView) view.findViewById(R.id.monthmile);
 //        life_Steps = (TextView) view.findViewById(R.id.allstep);
 //        life_Miles = (TextView) view.findViewById(R.id.allmile);
-        previousSpinner = (Spinner) view.findViewById(R.id.spinner);
-// Create an ArrayAdapter using the string array
+previousSpinner = (Spinner) view.findViewById(R.id.spinner2);
+// Create an ArrayAdapter using the string array 
 // and a default spinner layout
         ArrayAdapter<CharSequence> adapter;
         adapter = ArrayAdapter.createFromResource(view.getContext(), R.array.Previous, android.R.layout.simple_spinner_item);
@@ -212,7 +212,7 @@ public class SecondFragment extends Fragment {
 
     public void calculation(View p) {
 
-       // Toast.makeText(getActivity(), "Calc Accessed", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "Calc Accessed", Toast.LENGTH_SHORT).show();
         //have to change all the month+day to day_of_year
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyData", Context.MODE_PRIVATE);
         Calendar calendar = Calendar.getInstance();
@@ -263,14 +263,14 @@ public class SecondFragment extends Fragment {
             // <<<<<----
 
             int yester_steps = sharedPreferences.getInt("Count" + fyear + fdayyear, -1);
-            //Toast.makeText(getActivity(), "Count" + fyear + fdayyear+"  "+i+": "+yester_steps, Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "Count" + fyear + fdayyear+"  "+i+": "+yester_steps, Toast.LENGTH_LONG).show();
             switch (i){
                 case 1:
-                   // Toast.makeText(getActivity(), "Step check: "+yester_steps, Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "Step check: "+yester_steps, Toast.LENGTH_LONG).show();
                     if(yester_steps==-1){
                         //add in step_length info.
                         //if default make them invisible
-                       // Toast.makeText(getActivity(), "should be GONE!!!!!!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "should be GONE!!!!!!", Toast.LENGTH_SHORT).show();
                         p.findViewById(R.id.date1).setVisibility(View.GONE);
                         p.findViewById(R.id.progressOne).setVisibility(View.GONE);
                         p.findViewById(R.id.calories1).setVisibility(View.GONE);
@@ -283,7 +283,7 @@ public class SecondFragment extends Fragment {
 
                         progressOne.setProgress(yester_steps);
                        if( yester_steps%500 == progressOne.getMax())
-                        //Toast.makeText(getActivity(),"FDAYYEAR: "+fdayyear,Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(),"FDAYYEAR: "+fdayyear,Toast.LENGTH_LONG).show();
 
                         dateOne.setText((calendar.get(Calendar.MONTH)+1)+"/" +calendar.get(Calendar.DATE));
                         if(!step_length.equals(DEFAULT)) {
@@ -309,7 +309,7 @@ public class SecondFragment extends Fragment {
                     if(yester_steps==-1){
                         //if default make them invisible
 
-                       // Toast.makeText(getActivity(), "TWO should be GONE!!!!!!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "TWO should be GONE!!!!!!", Toast.LENGTH_SHORT).show();
                         p.findViewById(R.id.date2).setVisibility(View.GONE);
                         p.findViewById(R.id.progressTwo).setVisibility(View.GONE);
                         p.findViewById(R.id.calories2).setVisibility(View.GONE);
@@ -339,7 +339,7 @@ public class SecondFragment extends Fragment {
                 case 3:
                     if(yester_steps == -1){
                         //if default make them invisible
-                       // Toast.makeText(getActivity(), "THREE should be GONE!!!!!!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "THREE should be GONE!!!!!!", Toast.LENGTH_SHORT).show();
                         p.findViewById(R.id.date3).setVisibility(View.GONE);
                         p.findViewById(R.id.progressThree).setVisibility(View.GONE);
                         p.findViewById(R.id.calories3).setVisibility(View.GONE);
