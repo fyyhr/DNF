@@ -20,6 +20,8 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -72,7 +74,7 @@ public class MainActivity extends AppCompatActivity/*FragmentActivity*/ implemen
     //----> 11/28
     private int[] tabIcons = {
             R.drawable.ic_tab_home,
-            R.drawable.ic_tab_history,
+            R.drawable.ic_tab_his, //Yo, my icon is UUUUGGGLLLEEEE. maybe we'll change it back later
             R.drawable.ic_tab_biometrics,
             R.drawable.ic_tab_poring
     };
@@ -82,8 +84,8 @@ public class MainActivity extends AppCompatActivity/*FragmentActivity*/ implemen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
-
 //        if (savedInstanceState != null)
 //        {
 //            steps = savedInstanceState.getInt(PREV_S) - 1;
@@ -145,7 +147,7 @@ public class MainActivity extends AppCompatActivity/*FragmentActivity*/ implemen
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        //getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 

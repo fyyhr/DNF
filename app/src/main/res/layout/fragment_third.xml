@@ -3,8 +3,6 @@
     android:layout_height="match_parent" tools:context="com.example.darkdark.app.ThirdFragment"
     android:background="#FFFFFF">
 
-    <!-- TODO: Update blank fragment layout -->
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,7 +18,7 @@
         android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/editWeight"
-        android:hint="Enter Weight"
+        android:hint="Enter Weight (lb)"
         android:layout_above="@+id/editHeight"
         android:layout_alignStart="@+id/editHeight" />
 
