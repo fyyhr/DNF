@@ -1,12 +1,16 @@
 package com.example.darkdark.app;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 
 import android.app.NotificationManager;
 //Notification imports -->
 import android.app.AlarmManager;
 import android.app.Notification;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.media.RingtoneManager;
+import android.os.Build;
 import android.os.SystemClock;
 import android.content.Intent;
 
@@ -27,6 +31,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.darkdark.app.CircularProgressBar;
 import java.util.Calendar;
 
@@ -47,8 +53,11 @@ public class SecFragment extends Fragment implements SensorEventListener{
     boolean activityRunning;
     private TextView textCount;
     private TextView textTotal;
+    private TextView textLifeTimeToday;
+
     private SensorManager mSensorManager;
     private Sensor mStepCounterSensor;
+    private CircularProgressBar c1;
     private int cSteps = -1;
     private int dayyear=-1;
     private int year = -1;
@@ -56,6 +65,8 @@ public class SecFragment extends Fragment implements SensorEventListener{
     private int month=-1;
     private int date = -1;
     private int lastSteps;
+    private int colorSelector=1;
+    private int maxMultiple=1;
 
    // CircularProgressBar c3 = (CircularProgressBar) findViewById(R.id.circularprogressbar3);
 
@@ -118,26 +129,12 @@ public class SecFragment extends Fragment implements SensorEventListener{
         //Toast.makeText(getActivity(),"ONCREATVIEW CALLLED!", Toast.LENGTH_LONG).show();
         View view = inflater.inflate(R.layout.fragment_sec,
                 container, false);
-        		final CircularProgressBar c1 = (CircularProgressBar) view.findViewById(R.id.circularprogressbar1);
-		c1.animateProgressTo(0, 77, new CircularProgressBar.ProgressAnimationListener() {
-
-			@Override
-			public void onAnimationStart() {
-			}
-
-			@Override
-			public void onAnimationProgress(int progress) {
-				c1.setTitle(progress + "%");
-			}
-
-			@Override
-			public void onAnimationFinish() {
-				c1.setSubTitle("done");
-			}
-		});
+        		c1 = (CircularProgressBar) view.findViewById(R.id.circularprogressbar1);
+                c1.setMax(330);
 
 
         //lastSteps = 0;
+        textLifeTimeToday = (TextView) view.findViewById(R.id.lifetime_today);
         textCount = (TextView) view.findViewById(R.id.count);
         textTotal = (TextView) view.findViewById(R.id.total);
         mSensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
@@ -183,12 +180,14 @@ public class SecFragment extends Fragment implements SensorEventListener{
         //Toast.makeText(getActivity(),"OnDETACH CALLLED!", Toast.LENGTH_LONG).show();
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onSensorChanged(SensorEvent event) {
         Calendar calendar = Calendar.getInstance();
 
         year = calendar.get(Calendar.YEAR);
         dayyear = calendar.get(Calendar.DAY_OF_YEAR);
+
         //month = calendar.get(Calendar.MONTH);
         //date = calendar.get(Calendar.DATE);
 
@@ -220,6 +219,7 @@ public class SecFragment extends Fragment implements SensorEventListener{
                     textCount.setText(String.valueOf(checkCount));
 
                 }
+
             }
 
 
@@ -231,15 +231,95 @@ public class SecFragment extends Fragment implements SensorEventListener{
                     offsetCount = 0;
                 } else {
 
+
+
+
+
                     editor.putInt("Count" + year + dayyear, Integer.parseInt(String.valueOf(textCount.getText())) + offsetCount);
                     editor.commit();
                     textCount.setText(String.valueOf(mPrefs.getInt("Count" + year + dayyear, 0)));
 
+                    int curr_step = Integer.parseInt(String.valueOf(textCount.getText()))+ offsetCount;
+                    textCount.setText(String.valueOf(mPrefs.getInt("Count" + year + dayyear, 0)));
+                    Double curr_lifetime = curr_step *30.0 / 10000.0;
+                    editor.putInt("Count" + year + dayyear, curr_step);
+                    editor.putString("Lifetime" + year + dayyear, Double.toString(curr_lifetime));
+
+                    editor.commit();
+
+
+                    textLifeTimeToday.setText(mPrefs.getString("Lifetime"+year+dayyear, "0.0")+" Minutes");
+
+
                 }
+
+                //Toast.makeText(getActivity(), "::"+c1.getMax(), Toast.LENGTH_SHORT).show();
+                //because this is on sensor changed this will do this even when the app isn't open !
+                //so i don't need to worry about color in the next animating function
+                Toast.makeText(getActivity(), "TEXTCOUNT!@ "+Integer.parseInt(String.valueOf(textCount.getText()))%c1.getMax(), Toast.LENGTH_SHORT).show();
+                if(Integer.parseInt(String.valueOf(textCount.getText()))%c1.getMax()==0) {
+                    c1.setProgress(0);
+                    c1.setmBackgroundColorPaint(c1.getmProgressColorPaint());
+                    colorSelector++;
+                    Toast.makeText(getActivity(), "::COLOR SELECTOR: "+colorSelector, Toast.LENGTH_LONG).show();
+                    //maxMultiple++;
+
+                    switch(colorSelector)
+                    {
+                        case 2:
+                        c1.setmProgressColorPaint(Color.rgb(0x00, 0xbf, 0xff));
+                            break;
+
+                        case 3:
+                            c1.setmProgressColorPaint(Color.rgb(0x48,0x3d,0x8b));
+                            break;
+                        case 4:
+                            c1.setmProgressColorPaint(Color.rgb(0xff, 0x00, 0xff));
+                            break;
+                        case 5:
+                            c1.setmProgressColorPaint(Color.rgb(0xbf,0x00,0xff));
+                            break;
+                        default:
+                            colorSelector = 1;
+                            c1.setmProgressColorPaint(Color.rgb(0x00, 0xbf, 0xff));
+
+                    }
+
+                }
+                //this is not working fully but i don't care right now because who's going
+                c1.setProgress(Integer.parseInt(String.valueOf(textCount.getText()))%c1.getMax());
+                c1.setTitle(textCount.getText() + "");
+//                c1.animateProgressTo(Integer.parseInt(String.valueOf(textCount.getText()))%c1.getMax() - offsetCount%c1.getMax(), Integer.parseInt(String.valueOf(textCount.getText()))%c1.getMax(), new CircularProgressBar.ProgressAnimationListener() {
+//
+//                    @Override
+//                    public void onAnimationStart() {
+//                    }
+//
+//                    @Override
+//                    public void onAnimationProgress(int progress) {
+//                        c1.setTitle(textCount.getText() + "");
+//                       // Toast.makeText(getActivity(), "progress streps: "+ progress , Toast.LENGTH_SHORT).show();
+//
+//                    }
+//
+//                    @Override
+//                    public void onAnimationFinish() {
+//                        c1.setSubTitle("");
+//                    }
+//                });
 
 
             }
 
+
+            //c1.setProgress(Integer.parseInt(String.valueOf(textCount.getText())));
+           // c1.setTitle(String.valueOf(textCount.getText()));
+
+            //this will basically tell us how much data we have so we can back track
+            // and search until we find all of that data.
+            // needs some work.
+
+            editor.putInt("Amount of saved data",mPrefs.getInt("Amount of saved data", 0)+1);
 
             textTotal.setText(String.valueOf((int) event.values[0]));
             editor.putString("textTotal" + year + dayyear, textTotal.getText().toString());
@@ -327,6 +407,10 @@ public class SecFragment extends Fragment implements SensorEventListener{
                 textCount.setText("0");
             } else {
                 textCount.setText(String.valueOf(checkCount));
+
+                Double lifetimetoday = checkCount * 30.0 / 10000.0;
+                textLifeTimeToday.setText(Double.toString(lifetimetoday)+" Minutes");
+
             }
 
             int checkTotal = Integer.parseInt(mPrefs.getString("textTotal" + year + dayyear, "-1"));
@@ -335,8 +419,58 @@ public class SecFragment extends Fragment implements SensorEventListener{
                 //textCount.setText("0");
             } else {
                 textTotal.setText(String.valueOf(checkTotal));
+            }
+
+            if(Integer.parseInt(String.valueOf(textCount.getText()))/c1.getMax()>0) {
+                c1.setProgress(0);
+                c1.setmBackgroundColorPaint(c1.getmProgressColorPaint());
+                colorSelector=colorSelector+Integer.parseInt(String.valueOf(textCount.getText()))/c1.getMax();
+                //maxMultiple++;
+
+                switch(colorSelector)
+                {
+                    case 2:
+                        c1.setmProgressColorPaint(Color.rgb(0x00, 0xbf, 0xff));
+                        break;
+
+                    case 3:
+                        c1.setmProgressColorPaint(Color.rgb(0x48,0x3d,0x8b));
+                        break;
+                    case 4:
+                        c1.setmProgressColorPaint(Color.rgb(0xff, 0x00, 0xff));
+                        break;
+
+                    case 5:
+                        c1.setmProgressColorPaint(Color.rgb(0xbf,0x00,0xff));
+                        break;
+                    default:
+                        colorSelector = 1;
+                        c1.setmProgressColorPaint(Color.rgb(0x00, 0xbf, 0xff));
+
+                }
+
+
 
             }
+
+            c1.animateProgressTo(0, Integer.parseInt(String.valueOf(textCount.getText()))%c1.getMax(), new CircularProgressBar.ProgressAnimationListener() {
+
+                @Override
+                public void onAnimationStart() {
+                }
+
+                @Override
+                public void onAnimationProgress(int progress) {
+                    c1.setTitle(textCount.getText() + "");
+                    //Toast.makeText(getActivity(), "progress steps: "+ progress , Toast.LENGTH_SHORT).show();
+
+                }
+
+                @Override
+                public void onAnimationFinish() {
+                    c1.setSubTitle("");
+                }
+            });
         }
 
         activityRunning = true;

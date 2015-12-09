@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -80,8 +81,10 @@ public class CircularProgressBar extends ProgressBar{
             color = a.getString(R.styleable.CircularProgressBar_cpb_progressColor);
             if(color==null)
                 mProgressColorPaint.setColor(res.getColor(R.color.circular_progress_default_progress));
+
             else
                 mProgressColorPaint.setColor(Color.parseColor(color));
+
 
             color = a.getString(R.styleable.CircularProgressBar_cpb_backgroundColor);
             if(color==null)
@@ -123,7 +126,7 @@ public class CircularProgressBar extends ProgressBar{
             mBackgroundColorPaint.setStyle(Paint.Style.STROKE);
             mBackgroundColorPaint.setStrokeWidth(mStrokeWidth);
 
-            mTitlePaint.setTextSize(60);
+            mTitlePaint.setTextSize(120);
             mTitlePaint.setStyle(Paint.Style.FILL);
             mTitlePaint.setAntiAlias(true);
             mTitlePaint.setTypeface(Typeface.create("Roboto-Thin", Typeface.NORMAL));
@@ -145,7 +148,7 @@ public class CircularProgressBar extends ProgressBar{
 
             if(mHasShadow)
                 mProgressColorPaint.setShadowLayer(	3, 0, 1, mShadowColor);
-            canvas.drawArc(mCircleBounds, 270, scale , false, mProgressColorPaint);
+            canvas.drawArc(mCircleBounds, 270, scale, false, mProgressColorPaint);
 
 
             if(!TextUtils.isEmpty(mTitle)){
@@ -172,9 +175,9 @@ public class CircularProgressBar extends ProgressBar{
             final int height = getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec);
             final int width = getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec);
             final int min = Math.min(width, height);
-            setMeasuredDimension(min+2*STROKE_WIDTH, min+2*STROKE_WIDTH);
+            setMeasuredDimension(min + 2 * STROKE_WIDTH, min + 2 * STROKE_WIDTH);
 
-            mCircleBounds.set(STROKE_WIDTH, STROKE_WIDTH, min+STROKE_WIDTH, min+STROKE_WIDTH);
+            mCircleBounds.set(STROKE_WIDTH, STROKE_WIDTH, min + STROKE_WIDTH, min + STROKE_WIDTH);
         }
 
         @Override
@@ -203,7 +206,7 @@ public class CircularProgressBar extends ProgressBar{
                 @Override
                 public void onAnimationEnd(final Animator animation) {
                     CircularProgressBar.this.setProgress(end);
-                    if(listener!=null)
+                    if (listener != null)
                         listener.onAnimationFinish();
                 }
 
@@ -213,7 +216,7 @@ public class CircularProgressBar extends ProgressBar{
 
                 @Override
                 public void onAnimationStart(final Animator animation) {
-                    if(listener!=null)
+                    if (listener != null)
                         listener.onAnimationStart();
                 }
             });
@@ -222,10 +225,10 @@ public class CircularProgressBar extends ProgressBar{
                 @Override
                 public void onAnimationUpdate(final ValueAnimator animation) {
                     int progress = ((Float) animation.getAnimatedValue()).intValue();
-                    if(progress!=CircularProgressBar.this.getProgress()){
+                    if (progress != CircularProgressBar.this.getProgress()) {
                         Log.d(TAG, progress + "");
                         CircularProgressBar.this.setProgress(progress);
-                        if(listener!=null)
+                        if (listener != null)
                             listener.onAnimationProgress(progress);
                     }
                 }
@@ -233,6 +236,24 @@ public class CircularProgressBar extends ProgressBar{
             progressBarAnimator.start();
         }
 
+
+        public synchronized void setmProgressColorPaint(int color){
+            this.mProgressColorPaint.setColor(color);
+            invalidate();
+        }
+
+        public synchronized int getmProgressColorPaint(){
+            return mProgressColorPaint.getColor();
+        }
+
+    public synchronized void setmBackgroundColorPaint(int color){
+        this.mBackgroundColorPaint.setColor(color);
+        invalidate();
+    }
+
+    public synchronized int getmBackgroundColorPaint(){
+        return mBackgroundColorPaint.getColor();
+    }
         public synchronized void setTitle(String title){
             this.mTitle = title;
             invalidate();
@@ -256,6 +277,7 @@ public class CircularProgressBar extends ProgressBar{
         public synchronized void setHasShadow(boolean flag){
             this.mHasShadow = flag;
             invalidate();
+
         }
 
         public synchronized void setShadow(int color){

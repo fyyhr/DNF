@@ -19,6 +19,8 @@ import android.widget.Toast;
 import java.util.Calendar;
 import com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar;
 
+import org.w3c.dom.Text;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -77,7 +79,11 @@ public class SecondFragment extends Fragment {
     private TextView life_Steps;
     private TextView life_Miles;
 
+    private TextView tLifeTotal;
+
     private Spinner previousSpinner;
+
+    private double totallifetime=0;
 
 
     private OnFragmentInteractionListener mListener;
@@ -193,9 +199,34 @@ previousSpinner = (Spinner) view.findViewById(R.id.spinner2);
         );
 
 
-        //lastSteps = 0;
+        //lastSteps =
+
         textCount = (TextView) view.findViewById(R.id.count);
         textTotal = (TextView) view.findViewById(R.id.total);
+        tLifeTotal = (TextView) view.findViewById(R.id.textLifeTotal);
+
+        SharedPreferences mPrefs = getActivity().getSharedPreferences("MyData", Context.MODE_PRIVATE);
+        //SharedPreferences.Editor editor = mPrefs.edit();
+        Calendar calendar = Calendar.getInstance();
+        int dayyear = calendar.get(Calendar.DAY_OF_YEAR);
+        int year = calendar.get(Calendar.YEAR);
+        double totallifetime1 =0;
+        for(int i=dayyear; i>0; i--){
+
+
+        totallifetime1 = Double.parseDouble(String.valueOf(mPrefs.getString("Lifetime"+year+i, "0")))+ totallifetime1;
+
+
+        }
+        for(int i=365; i>0; i--){
+
+
+          totallifetime = Double.parseDouble(String.valueOf(mPrefs.getString("Lifetime"+(year-1)+i, "0")))+ totallifetime;
+
+        }
+
+            totallifetime=totallifetime1+totallifetime;
+            tLifeTotal.setText(""+totallifetime+" Minutes");
 
         //mStepDetectorSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
 
@@ -212,7 +243,7 @@ previousSpinner = (Spinner) view.findViewById(R.id.spinner2);
 
     public void calculation(View p) {
 
-        Toast.makeText(getActivity(), "Calc Accessed", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(), "Calc Accessed", Toast.LENGTH_SHORT).show();
         //have to change all the month+day to day_of_year
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyData", Context.MODE_PRIVATE);
         Calendar calendar = Calendar.getInstance();
@@ -230,7 +261,8 @@ previousSpinner = (Spinner) view.findViewById(R.id.spinner2);
 
        int fdayyear;
         int fyear = calendar.get(Calendar.YEAR);
-        for(int i=1;i<6; i++){
+
+        for(int i=0;i<6; i++){
             calendar.add(Calendar.DAY_OF_YEAR, -i);
             fdayyear= calendar.get(Calendar.DAY_OF_YEAR);
 
@@ -265,12 +297,12 @@ previousSpinner = (Spinner) view.findViewById(R.id.spinner2);
             int yester_steps = sharedPreferences.getInt("Count" + fyear + fdayyear, -1);
             Toast.makeText(getActivity(), "Count" + fyear + fdayyear+"  "+i+": "+yester_steps, Toast.LENGTH_LONG).show();
             switch (i){
-                case 1:
-                    Toast.makeText(getActivity(), "Step check: "+yester_steps, Toast.LENGTH_LONG).show();
+                case 0:
+                    //Toast.makeText(getActivity(), "Step check: "+yester_steps, Toast.LENGTH_LONG).show();
                     if(yester_steps==-1){
                         //add in step_length info.
                         //if default make them invisible
-                        Toast.makeText(getActivity(), "should be GONE!!!!!!", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getActivity(), "should be GONE!!!!!!", Toast.LENGTH_SHORT).show();
                         p.findViewById(R.id.date1).setVisibility(View.GONE);
                         p.findViewById(R.id.progressOne).setVisibility(View.GONE);
                         p.findViewById(R.id.calories1).setVisibility(View.GONE);
@@ -305,11 +337,11 @@ previousSpinner = (Spinner) view.findViewById(R.id.spinner2);
 
 
                     }
-                case 2:
+                case 1:
                     if(yester_steps==-1){
                         //if default make them invisible
 
-                        Toast.makeText(getActivity(), "TWO should be GONE!!!!!!", Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(getActivity(), "TWO should be GONE!!!!!!", Toast.LENGTH_SHORT).show();
                         p.findViewById(R.id.date2).setVisibility(View.GONE);
                         p.findViewById(R.id.progressTwo).setVisibility(View.GONE);
                         p.findViewById(R.id.calories2).setVisibility(View.GONE);
@@ -336,10 +368,10 @@ previousSpinner = (Spinner) view.findViewById(R.id.spinner2);
                         }
 
                     }
-                case 3:
+                case 2:
                     if(yester_steps == -1){
                         //if default make them invisible
-                        Toast.makeText(getActivity(), "THREE should be GONE!!!!!!", Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(getActivity(), "THREE should be GONE!!!!!!", Toast.LENGTH_SHORT).show();
                         p.findViewById(R.id.date3).setVisibility(View.GONE);
                         p.findViewById(R.id.progressThree).setVisibility(View.GONE);
                         p.findViewById(R.id.calories3).setVisibility(View.GONE);
@@ -365,7 +397,7 @@ previousSpinner = (Spinner) view.findViewById(R.id.spinner2);
                         }
 
                     }
-                case 4:
+                case 3:
                     if(yester_steps == -1){
                         //if default make them invisible
 
@@ -394,7 +426,7 @@ previousSpinner = (Spinner) view.findViewById(R.id.spinner2);
                         }
 
                     }
-                case 5:
+                case 4:
                     if(yester_steps == -1 ){
                         //if default make them invisible
 
@@ -469,6 +501,9 @@ previousSpinner = (Spinner) view.findViewById(R.id.spinner2);
 
 
 
+
+
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -477,6 +512,8 @@ previousSpinner = (Spinner) view.findViewById(R.id.spinner2);
             mListener.onFragmentInteraction(uri);
         }
     }
+
+
 
     @Override
     public void onAttach(Activity activity) {
