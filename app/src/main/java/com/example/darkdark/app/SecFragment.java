@@ -118,7 +118,24 @@ public class SecFragment extends Fragment implements SensorEventListener{
         //Toast.makeText(getActivity(),"ONCREATVIEW CALLLED!", Toast.LENGTH_LONG).show();
         View view = inflater.inflate(R.layout.fragment_sec,
                 container, false);
-        CircularProgressBar c3 = (CircularProgressBar) view.findViewById(R.id.circularprogressbar1);
+        		final CircularProgressBar c1 = (CircularProgressBar) view.findViewById(R.id.circularprogressbar1);
+		c1.animateProgressTo(0, 77, new CircularProgressBar.ProgressAnimationListener() {
+
+			@Override
+			public void onAnimationStart() {
+			}
+
+			@Override
+			public void onAnimationProgress(int progress) {
+				c1.setTitle(progress + "%");
+			}
+
+			@Override
+			public void onAnimationFinish() {
+				c1.setSubTitle("done");
+			}
+		});
+
 
         //lastSteps = 0;
         textCount = (TextView) view.findViewById(R.id.count);

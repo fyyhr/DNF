@@ -18,7 +18,7 @@
         <item name="android:adjustViewBounds">true</item>
         <item name="cpb_progressColor">@color/circular_progress_default_progress</item>
         <item name="cpb_hasShadow">true</item>
-        <item name="cpb_strokeWidth">20</item>
+        <item name="cpb_strokeWidth">40</item>
         <item name="cpb_titleColor">@color/circular_progress_default_title</item>
         <item name="cpb_subtitleColor">@color/circular_progress_default_subtitle</item>
     </style>
