@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.darkdark.app.SecondFragment"
-    android:background="#FFFFFF"
+    android:background="#3d3d3d"
     android:rowCount="8"
     android:columnCount="6">
 
@@ -21,6 +21,7 @@
             android:id="@+id/spinner">
 
             <Spinner
+                android:textColor="#FFFFFF"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/spinner2" />
@@ -33,6 +34,7 @@
             android:layout_centerHorizontal="true">
 
             <TextView
+                android:textColor="#FFFFFF"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -62,6 +64,7 @@
                 android:layout_toEndOf="@+id/textView" />
 
             <TextView
+                android:textColor="#FFFFFF"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -70,6 +73,7 @@
                 android:layout_weight="0.07" />
 
             <TextView
+                android:textColor="#FFFFFF"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -91,6 +95,7 @@
             android:layout_centerHorizontal="true">
 
             <TextView
+                android:textColor="#FFFFFF"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -119,6 +124,7 @@
                 android:layout_toEndOf="@+id/textView" />
 
             <TextView
+                android:textColor="#FFFFFF"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -127,6 +133,7 @@
                 android:layout_weight="0.07" />
 
             <TextView
+                android:textColor="#FFFFFF"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -148,6 +155,7 @@
             android:layout_centerHorizontal="true">
 
             <TextView
+                android:textColor="#FFFFFF"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -176,6 +184,7 @@
                 android:layout_toEndOf="@+id/textView" />
 
             <TextView
+                android:textColor="#FFFFFF"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -184,6 +193,7 @@
                 android:layout_weight="0.07" />
 
             <TextView
+                android:textColor="#FFFFFF"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -205,6 +215,7 @@
             android:layout_centerHorizontal="true">
 
             <TextView
+                android:textColor="#FFFFFF"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -233,6 +244,7 @@
                 android:layout_toEndOf="@+id/textView" />
 
             <TextView
+                android:textColor="#FFFFFF"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -241,6 +253,7 @@
                 android:layout_weight="0.07" />
 
             <TextView
+                android:textColor="#FFFFFF"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -262,6 +275,7 @@
             android:layout_centerHorizontal="true">
 
             <TextView
+                android:textColor="#FFFFFF"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -290,6 +304,7 @@
                 android:layout_toEndOf="@+id/textView" />
 
             <TextView
+                android:textColor="#FFFFFF"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -298,6 +313,7 @@
                 android:layout_weight="0.07" />
 
             <TextView
+                android:textColor="#FFFFFF"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -310,6 +326,7 @@
     </LinearLayout>
 
     <TextView
+        android:textColor="#FFFFFF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -321,6 +338,7 @@
         android:layout_marginBottom="10dp" />
 
     <TextView
+        android:textColor="#FFFFFF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"

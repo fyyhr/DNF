@@ -130,7 +130,7 @@ public class SecFragment extends Fragment implements SensorEventListener{
         View view = inflater.inflate(R.layout.fragment_sec,
                 container, false);
         		c1 = (CircularProgressBar) view.findViewById(R.id.circularprogressbar1);
-                c1.setMax(330);
+                c1.setMax(33);
 
 
         //lastSteps = 0;
@@ -240,7 +240,7 @@ public class SecFragment extends Fragment implements SensorEventListener{
                     textCount.setText(String.valueOf(mPrefs.getInt("Count" + year + dayyear, 0)));
 
                     int curr_step = Integer.parseInt(String.valueOf(textCount.getText()))+ offsetCount;
-                    textCount.setText(String.valueOf(mPrefs.getInt("Count" + year + dayyear, 0)));
+                    //textCount.setText(String.valueOf(mPrefs.getInt("Count" + year + dayyear, 0)));
                     Double curr_lifetime = curr_step *30.0 / 10000.0;
                     editor.putInt("Count" + year + dayyear, curr_step);
                     editor.putString("Lifetime" + year + dayyear, Double.toString(curr_lifetime));
@@ -259,31 +259,42 @@ public class SecFragment extends Fragment implements SensorEventListener{
                 Toast.makeText(getActivity(), "TEXTCOUNT!@ "+Integer.parseInt(String.valueOf(textCount.getText()))%c1.getMax(), Toast.LENGTH_SHORT).show();
                 if(Integer.parseInt(String.valueOf(textCount.getText()))%c1.getMax()==0) {
                     c1.setProgress(0);
-                    c1.setmBackgroundColorPaint(c1.getmProgressColorPaint());
+
+
+
                     colorSelector++;
+
+                    c1.setmBackgroundColorPaint(c1.getmProgressColorPaint());
+
                     Toast.makeText(getActivity(), "::COLOR SELECTOR: "+colorSelector, Toast.LENGTH_LONG).show();
                     //maxMultiple++;
 
                     switch(colorSelector)
                     {
                         case 2:
-                        c1.setmProgressColorPaint(Color.rgb(0x00, 0xbf, 0xff));
+                        c1.setmProgressColorPaint(Color.rgb(0xff, 0xbf, 0xff));
+                            c1.setTitleColor(c1.getmProgressColorPaint());
                             break;
 
                         case 3:
                             c1.setmProgressColorPaint(Color.rgb(0x48,0x3d,0x8b));
+                            c1.setTitleColor(c1.getmProgressColorPaint());
                             break;
                         case 4:
                             c1.setmProgressColorPaint(Color.rgb(0xff, 0x00, 0xff));
+                            c1.setTitleColor(c1.getmProgressColorPaint());
                             break;
                         case 5:
                             c1.setmProgressColorPaint(Color.rgb(0xbf,0x00,0xff));
+                            c1.setTitleColor(c1.getmProgressColorPaint());
                             break;
                         default:
                             colorSelector = 1;
                             c1.setmProgressColorPaint(Color.rgb(0x00, 0xbf, 0xff));
+                            c1.setTitleColor(c1.getmProgressColorPaint());
 
                     }
+
 
                 }
                 //this is not working fully but i don't care right now because who's going
@@ -422,8 +433,8 @@ public class SecFragment extends Fragment implements SensorEventListener{
             }
 
             if(Integer.parseInt(String.valueOf(textCount.getText()))/c1.getMax()>0) {
-                c1.setProgress(0);
-                c1.setmBackgroundColorPaint(c1.getmProgressColorPaint());
+               // c1.setProgress(0);
+                //c1.setmBackgroundColorPaint(c1.getmProgressColorPaint());
                 colorSelector=colorSelector+Integer.parseInt(String.valueOf(textCount.getText()))/c1.getMax();
                 //maxMultiple++;
 
