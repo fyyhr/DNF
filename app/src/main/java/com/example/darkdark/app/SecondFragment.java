@@ -131,7 +131,7 @@ public class SecondFragment extends Fragment {
 //        life_Steps = (TextView) view.findViewById(R.id.allstep);
 //        life_Miles = (TextView) view.findViewById(R.id.allmile);
 previousSpinner = (Spinner) view.findViewById(R.id.spinner2);
-// Create an ArrayAdapter using the string array 
+// Create an ArrayAdapter using the string array
 // and a default spinner layout
         ArrayAdapter<CharSequence> adapter;
         adapter = ArrayAdapter.createFromResource(view.getContext(), R.array.Previous, android.R.layout.simple_spinner_item);

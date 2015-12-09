@@ -27,8 +27,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
-
+import com.example.darkdark.app.CircularProgressBar;
 import java.util.Calendar;
 
 
@@ -57,6 +56,8 @@ public class SecFragment extends Fragment implements SensorEventListener{
     private int month=-1;
     private int date = -1;
     private int lastSteps;
+
+   // CircularProgressBar c3 = (CircularProgressBar) findViewById(R.id.circularprogressbar3);
 
 
     //Internal state
@@ -117,6 +118,7 @@ public class SecFragment extends Fragment implements SensorEventListener{
         //Toast.makeText(getActivity(),"ONCREATVIEW CALLLED!", Toast.LENGTH_LONG).show();
         View view = inflater.inflate(R.layout.fragment_sec,
                 container, false);
+        CircularProgressBar c3 = (CircularProgressBar) view.findViewById(R.id.circularprogressbar1);
 
         //lastSteps = 0;
         textCount = (TextView) view.findViewById(R.id.count);
