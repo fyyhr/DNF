@@ -3,6 +3,7 @@ package com.example.darkdark.app;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Window;
 
 public class splash extends Activity {
 

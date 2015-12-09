@@ -178,7 +178,7 @@ public class SecFragment extends Fragment implements SensorEventListener{
         if(isAdded()) {
 
            // Toast.makeText(getActivity(),"5 second delay bitches",Toast.LENGTH_LONG).show();
-            scheduleNotification(getNotification("Move a bit!"), 900000);
+            scheduleNotification(getNotification("Move a bit!"), 5000);
            // Toast.makeText(getActivity(),"ISADDED", Toast.LENGTH_LONG).show();
 
             SharedPreferences mPrefs = getActivity().getSharedPreferences("MyData", Context.MODE_PRIVATE);
@@ -267,7 +267,7 @@ public class SecFragment extends Fragment implements SensorEventListener{
         Notification.Builder builder = new Notification.Builder(getActivity()); //this to getActivity
         builder.setContentTitle("Scheduled Notification");
         builder.setContentText(content);
-        builder.setSmallIcon(R.mipmap.ic_launcher);
+        builder.setSmallIcon(R.drawable.ic_notif);
 
         if(!(hourofday >=22||hourofday<=5)) {
             Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
