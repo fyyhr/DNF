@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity/*FragmentActivity*/ implemen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        setTheme(R.style.AppTheme);
+
         super.onCreate(savedInstanceState);
 //        if (savedInstanceState != null)
 //        {
@@ -92,8 +92,8 @@ public class MainActivity extends AppCompatActivity/*FragmentActivity*/ implemen
 //        }
         setContentView(R.layout.fragment_main);//changed from activity_main cause it was just calling fragment_main anyway
 
-        mToolbar = (Toolbar) findViewById(R.id.appbar);
-        setSupportActionBar(mToolbar);
+        //mToolbar = (Toolbar) findViewById(R.id.appbar);
+        //setSupportActionBar(mToolbar);
 
         mAdapter = new MyPagerAdapter(getSupportFragmentManager());
         mTabLayout = (TabLayout) findViewById(R.id.tab_layout);
