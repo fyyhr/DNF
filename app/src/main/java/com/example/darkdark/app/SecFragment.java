@@ -35,6 +35,7 @@ import android.widget.Toast;
 
 import com.example.darkdark.app.CircularProgressBar;
 import java.util.Calendar;
+import java.util.Random;
 
 
 /**
@@ -67,6 +68,8 @@ public class SecFragment extends Fragment implements SensorEventListener{
     private int lastSteps;
     private int colorSelector=1;
     private int maxMultiple=1;
+
+    Random rand = new Random();
 
    // CircularProgressBar c3 = (CircularProgressBar) findViewById(R.id.circularprogressbar3);
 
@@ -130,7 +133,7 @@ public class SecFragment extends Fragment implements SensorEventListener{
         View view = inflater.inflate(R.layout.fragment_sec,
                 container, false);
         		c1 = (CircularProgressBar) view.findViewById(R.id.circularprogressbar1);
-                c1.setMax(33);
+                c1.setMax(333);
 
 
         //lastSteps = 0;
@@ -194,7 +197,7 @@ public class SecFragment extends Fragment implements SensorEventListener{
         if(isAdded()) {
 
            // Toast.makeText(getActivity(),"5 second delay bitches",Toast.LENGTH_LONG).show();
-            scheduleNotification(getNotification("Move a bit!"), 5000);
+            scheduleNotification(getNotification("Move a bit!"), 1800000);
            // Toast.makeText(getActivity(),"ISADDED", Toast.LENGTH_LONG).show();
 
             SharedPreferences mPrefs = getActivity().getSharedPreferences("MyData", Context.MODE_PRIVATE);
@@ -223,83 +226,88 @@ public class SecFragment extends Fragment implements SensorEventListener{
             }
 
 
-            else if (lastSteps != (int) event.values[0]) {
+            else {
+                if (lastSteps != (int) event.values[0]) {
 
-                //Toast.makeText(getActivity(), "LASTSTEPS: "+lastSteps+" VALUE[0]: "+(int) event.values[0], Toast.LENGTH_LONG).show();
-                int offsetCount = ((int) event.values[0] - lastSteps);
-                if (offsetCount <= 0) {
-                    offsetCount = 0;
-                } else {
-
-
-
+                    //Toast.makeText(getActivity(), "LASTSTEPS: "+lastSteps+" VALUE[0]: "+(int) event.values[0], Toast.LENGTH_LONG).show();
+                    int offsetCount = ((int) event.values[0] - lastSteps);
+                    if (offsetCount <= 0) {
+                        offsetCount = 0;
+                    } else {
 
 
-                    editor.putInt("Count" + year + dayyear, Integer.parseInt(String.valueOf(textCount.getText())) + offsetCount);
-                    editor.commit();
-                    textCount.setText(String.valueOf(mPrefs.getInt("Count" + year + dayyear, 0)));
+                        editor.putInt("Count" + year + dayyear, Integer.parseInt(String.valueOf(textCount.getText())) + offsetCount);
+                        editor.commit();
+                        textCount.setText(String.valueOf(mPrefs.getInt("Count" + year + dayyear, 0)));
 
-                    int curr_step = Integer.parseInt(String.valueOf(textCount.getText()))+ offsetCount;
-                    //textCount.setText(String.valueOf(mPrefs.getInt("Count" + year + dayyear, 0)));
-                    Double curr_lifetime = curr_step *30.0 / 10000.0;
-                    editor.putInt("Count" + year + dayyear, curr_step);
-                    editor.putString("Lifetime" + year + dayyear, Double.toString(curr_lifetime));
+                        int curr_step = Integer.parseInt(String.valueOf(textCount.getText())) + offsetCount;
+                        //textCount.setText(String.valueOf(mPrefs.getInt("Count" + year + dayyear, 0)));
+                        Double curr_lifetime = curr_step * 30.0 / 10000.0;
+                        editor.putInt("Count" + year + dayyear, curr_step);
+                        editor.putString("Lifetime" + year + dayyear, Double.toString(curr_lifetime));
 
-                    editor.commit();
-
-
-                    textLifeTimeToday.setText(mPrefs.getString("Lifetime"+year+dayyear, "0.0")+" Minutes");
+                        editor.commit();
 
 
-                }
+                        textLifeTimeToday.setText(mPrefs.getString("Lifetime" + year + dayyear, "0.0") + " Minutes");
 
-                //Toast.makeText(getActivity(), "::"+c1.getMax(), Toast.LENGTH_SHORT).show();
-                //because this is on sensor changed this will do this even when the app isn't open !
-                //so i don't need to worry about color in the next animating function
-                Toast.makeText(getActivity(), "TEXTCOUNT!@ "+Integer.parseInt(String.valueOf(textCount.getText()))%c1.getMax(), Toast.LENGTH_SHORT).show();
-                if(Integer.parseInt(String.valueOf(textCount.getText()))%c1.getMax()==0) {
-                    c1.setProgress(0);
-
-
-
-                    colorSelector++;
-
-                    c1.setmBackgroundColorPaint(c1.getmProgressColorPaint());
-
-                    Toast.makeText(getActivity(), "::COLOR SELECTOR: "+colorSelector, Toast.LENGTH_LONG).show();
-                    //maxMultiple++;
-
-                    switch(colorSelector)
-                    {
-                        case 2:
-                        c1.setmProgressColorPaint(Color.rgb(0xff, 0xbf, 0xff));
-                            c1.setTitleColor(c1.getmProgressColorPaint());
-                            break;
-
-                        case 3:
-                            c1.setmProgressColorPaint(Color.rgb(0x48,0x3d,0x8b));
-                            c1.setTitleColor(c1.getmProgressColorPaint());
-                            break;
-                        case 4:
-                            c1.setmProgressColorPaint(Color.rgb(0xff, 0x00, 0xff));
-                            c1.setTitleColor(c1.getmProgressColorPaint());
-                            break;
-                        case 5:
-                            c1.setmProgressColorPaint(Color.rgb(0xbf,0x00,0xff));
-                            c1.setTitleColor(c1.getmProgressColorPaint());
-                            break;
-                        default:
-                            colorSelector = 1;
-                            c1.setmProgressColorPaint(Color.rgb(0x00, 0xbf, 0xff));
-                            c1.setTitleColor(c1.getmProgressColorPaint());
 
                     }
 
+                    //Toast.makeText(getActivity(), "::"+c1.getMax(), Toast.LENGTH_SHORT).show();
+                    //because this is on sensor changed this will do this even when the app isn't open !
+                    //so i don't need to worry about color in the next animating function
+                    //Toast.makeText(getActivity(), "TEXTCOUNT!@ "+Integer.parseInt(String.valueOf(textCount.getText()))%c1.getMax(), Toast.LENGTH_SHORT).show();
+                    if (Integer.parseInt(String.valueOf(textCount.getText())) % c1.getMax() == 0) {
+                        c1.setProgress(0);
 
-                }
-                //this is not working fully but i don't care right now because who's going
-                c1.setProgress(Integer.parseInt(String.valueOf(textCount.getText()))%c1.getMax());
-                c1.setTitle(textCount.getText() + "");
+                        c1.setmBackgroundColorPaint(c1.getmProgressColorPaint());
+
+                        //  Toast.makeText(getActivity(), "::COLOR SELECTOR: "+colorSelector, Toast.LENGTH_LONG).show();
+                        //maxMultiple++;
+
+
+                        colorSelector = mPrefs.getInt("color", 0);
+                        colorSelector++;
+
+                        switch (colorSelector) {
+                            case 2:
+                                c1.setmProgressColorPaint(Color.rgb(0xff, 0xbf, 0xff));
+                                c1.setTitleColor(c1.getmProgressColorPaint());
+                                break;
+
+                            case 3:
+                                c1.setmProgressColorPaint(Color.rgb(0x48, 0x3d, 0x8b));
+                                c1.setTitleColor(c1.getmProgressColorPaint());
+                                break;
+                            case 4:
+                                c1.setmProgressColorPaint(Color.rgb(0xff, 0x00, 0xff));
+                                c1.setTitleColor(c1.getmProgressColorPaint());
+                                break;
+                            case 5:
+                                c1.setmProgressColorPaint(Color.rgb(0xbf, 0x00, 0xff));
+                                c1.setTitleColor(c1.getmProgressColorPaint());
+                                break;
+                            default:
+                                colorSelector = 1;
+                                int r =rand.nextInt(255);
+                                int g =rand.nextInt(255);
+                                int b = rand.nextInt(255);
+
+                                c1.setmProgressColorPaint(Color.rgb(r,g,b));
+                                c1.setTitleColor(c1.getmProgressColorPaint());
+
+                        }
+                        if (c1.getmBackgroundColorPaint() == c1.getmProgressColorPaint()) {
+                            c1.setmBackgroundColorPaint(Color.rgb(0x12, 0xbb, 0xff));
+                        }
+                        editor.putInt("color", colorSelector);
+                        editor.commit();
+
+                    }
+                    //this is not working fully but i don't care right now because who's going
+                    c1.setProgress(Integer.parseInt(String.valueOf(textCount.getText())) % c1.getMax());
+                    c1.setTitle(textCount.getText() + "");
 //                c1.animateProgressTo(Integer.parseInt(String.valueOf(textCount.getText()))%c1.getMax() - offsetCount%c1.getMax(), Integer.parseInt(String.valueOf(textCount.getText()))%c1.getMax(), new CircularProgressBar.ProgressAnimationListener() {
 //
 //                    @Override
@@ -320,6 +328,7 @@ public class SecFragment extends Fragment implements SensorEventListener{
 //                });
 
 
+                }
             }
 
 
@@ -396,6 +405,10 @@ public class SecFragment extends Fragment implements SensorEventListener{
         year = calendar.get(Calendar.YEAR);
         dayyear = calendar.get(Calendar.DAY_OF_YEAR);
 
+
+        //  Toast.makeText(getActivity(), "COLOR S"+colorSelector, Toast.LENGTH_SHORT).show();
+
+
         if(isAdded()) {
 
             SharedPreferences mPrefs = getActivity().getSharedPreferences("MyData", Context.MODE_PRIVATE);
@@ -420,7 +433,7 @@ public class SecFragment extends Fragment implements SensorEventListener{
                 textCount.setText(String.valueOf(checkCount));
 
                 Double lifetimetoday = checkCount * 30.0 / 10000.0;
-                textLifeTimeToday.setText(Double.toString(lifetimetoday)+" Minutes");
+                textLifeTimeToday.setText(Double.toString(lifetimetoday) + " Minutes");
 
             }
 
@@ -432,37 +445,94 @@ public class SecFragment extends Fragment implements SensorEventListener{
                 textTotal.setText(String.valueOf(checkTotal));
             }
 
-            if(Integer.parseInt(String.valueOf(textCount.getText()))/c1.getMax()>0) {
-               // c1.setProgress(0);
-                //c1.setmBackgroundColorPaint(c1.getmProgressColorPaint());
-                colorSelector=colorSelector+Integer.parseInt(String.valueOf(textCount.getText()))/c1.getMax();
-                //maxMultiple++;
 
-                switch(colorSelector)
-                {
+            //c1.setmBackgroundColorPaint(c1.getmProgressColorPaint());
+            colorSelector = mPrefs.getInt("color", 0);
+
+//            if(c1.getmBackgroundColorPaint()!=c1.getmProgressColorPaint()){
+//
+//
+          //  if(c1.getmBackgroundColorPaint()==c1.getmProgressColorPaint()) {
+
+                switch (colorSelector) {
+                    //c1.getmProgressColorPaint()==c1.getmBackgroundColorPaint()
+
                     case 2:
+                        //c1.setmBackgroundColorPaint(c1.getmProgressColorPaint());
                         c1.setmProgressColorPaint(Color.rgb(0x00, 0xbf, 0xff));
+
                         break;
 
                     case 3:
-                        c1.setmProgressColorPaint(Color.rgb(0x48,0x3d,0x8b));
+                        // c1.setmBackgroundColorPaint(c1.getmProgressColorPaint());
+                        c1.setmProgressColorPaint(Color.rgb(0x48, 0x3d, 0x8b));
                         break;
                     case 4:
+                        //c1.setmBackgroundColorPaint(c1.getmProgressColorPaint());
                         c1.setmProgressColorPaint(Color.rgb(0xff, 0x00, 0xff));
                         break;
 
                     case 5:
-                        c1.setmProgressColorPaint(Color.rgb(0xbf,0x00,0xff));
+                        //c1.setmBackgroundColorPaint(c1.getmProgressColorPaint());
+                        c1.setmProgressColorPaint(Color.rgb(0xbf, 0x00, 0xff));
                         break;
                     default:
                         colorSelector = 1;
-                        c1.setmProgressColorPaint(Color.rgb(0x00, 0xbf, 0xff));
-
+                        // c1.setmBackgroundColorPaint(c1.getmProgressColorPaint());
+                        c1.setmProgressColorPaint(Color.rgb(0xFE, 0xbf, 0xff));
                 }
 
-
-
+            if(c1.getmBackgroundColorPaint()==c1.getmProgressColorPaint()){
+                c1.setmBackgroundColorPaint(Color.rgb(0x12,0xbb,0xff));
             }
+            //}
+       // }
+
+           // if(Integer.parseInt(String.valueOf(textCount.getText()))/c1.getMax()>0) {
+               // c1.setProgress(0);
+                //c1.setmBackgroundColorPaint(c1.getmProgressColorPaint());
+                //colorSelector=Integer.parseInt(String.valueOf(textCount.getText()))/c1.getMax();
+
+
+                //maxMultiple++
+                //
+                // Toast.makeText(getActivity(), "COLOR S"+colorSelector, Toast.LENGTH_SHORT).show();
+               //olorSelector++;
+
+
+//            else {
+//                switch (colorSelector) {
+//                    case 2:
+//                        // c1.setmBackgroundColorPaint(c1.getmProgressColorPaint());
+//                        c1.setmProgressColorPaint(Color.rgb(0x00, 0xbf, 0xff));
+//
+//                        break;
+//
+//                    case 3:
+//                        c1.setmBackgroundColorPaint(c1.getmProgressColorPaint());
+//                        c1.setmProgressColorPaint(Color.rgb(0x48, 0x3d, 0x8b));
+//                        break;
+//                    case 4:
+//                        c1.setmBackgroundColorPaint(c1.getmProgressColorPaint());
+//                        c1.setmProgressColorPaint(Color.rgb(0xff, 0x00, 0xff));
+//                        break;
+//
+//                    case 5:
+//                        c1.setmBackgroundColorPaint(c1.getmProgressColorPaint());
+//                        c1.setmProgressColorPaint(Color.rgb(0xbf, 0x00, 0xff));
+//                        break;
+//                    default:
+//                        colorSelector = 1;
+//                        c1.setmBackgroundColorPaint(c1.getmProgressColorPaint());
+//                        c1.setmProgressColorPaint(Color.rgb(0xFE, 0xbf, 0xff));
+//
+//                }
+
+            //}
+
+
+
+
 
             c1.animateProgressTo(0, Integer.parseInt(String.valueOf(textCount.getText()))%c1.getMax(), new CircularProgressBar.ProgressAnimationListener() {
 

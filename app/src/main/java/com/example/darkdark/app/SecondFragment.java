@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,7 +31,7 @@ import org.w3c.dom.Text;
  * Use the {@link SecondFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SecondFragment extends Fragment {
+public class SecondFragment extends Fragment  {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -139,12 +140,13 @@ public class SecondFragment extends Fragment {
 previousSpinner = (Spinner) view.findViewById(R.id.spinner2);
 // Create an ArrayAdapter using the string array
 // and a default spinner layout
-        ArrayAdapter<CharSequence> adapter;
+        final ArrayAdapter<CharSequence> adapter;
         adapter = ArrayAdapter.createFromResource(view.getContext(), R.array.Previous, android.R.layout.simple_spinner_item);
 // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 // Apply the adapter to the spinner
         previousSpinner.setAdapter(adapter);
+
 
 
 
@@ -177,17 +179,24 @@ previousSpinner = (Spinner) view.findViewById(R.id.spinner2);
 
 
 
+
+
         previousSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                                       public void onItemSelected(AdapterView<?> parent, View vi,
                                                                                  int pos, long id) {
                                                           // An item was selected. You can retrieve the selected item using
                                                           // parent.getItemAtPosition(pos)
                                                           if (parent.getItemAtPosition(pos).toString().equals("5 days")) {
-                                                              calculation(view);
-                                                          }
-                                                          if (parent.getItemAtPosition(pos).toString().equals("5 months")) {
+                                                              calculation(view, false);
+
+                                                             // onDestroyView();
 
                                                           }
+//                                                          if (parent.getItemAtPosition(pos).toString().equals("5 months")) {
+//                                                              calculation(view, true);
+//
+//                                                              //onDestroyView();
+//                                                          }
                                                       }
 
                                                       @Override
@@ -241,7 +250,7 @@ previousSpinner = (Spinner) view.findViewById(R.id.spinner2);
 
 
 
-    public void calculation(View p) {
+    public void calculation(View p,boolean bMonth) {
 
         //Toast.makeText(getActivity(), "Calc Accessed", Toast.LENGTH_SHORT).show();
         //have to change all the month+day to day_of_year
@@ -257,13 +266,22 @@ previousSpinner = (Spinner) view.findViewById(R.id.spinner2);
         int last_month = month -1;
         Double dstep_length = null;
         Double dweight = null;
+        int multiplier;
+
 
 
        int fdayyear;
         int fyear = calendar.get(Calendar.YEAR);
 
         for(int i=0;i<6; i++){
-            calendar.add(Calendar.DAY_OF_YEAR, -i);
+
+            if(bMonth){
+                multiplier = 30 ;
+            }
+            else{
+                multiplier = 1;
+            }
+            calendar.add(Calendar.DAY_OF_YEAR, -i*multiplier);
             fdayyear= calendar.get(Calendar.DAY_OF_YEAR);
 
            // Toast.makeText(getActivity(), "FDATE: "+fdate, Toast.LENGTH_LONG).show();
@@ -295,7 +313,7 @@ previousSpinner = (Spinner) view.findViewById(R.id.spinner2);
             // <<<<<----
 
             int yester_steps = sharedPreferences.getInt("Count" + fyear + fdayyear, -1);
-            Toast.makeText(getActivity(), "Count" + fyear + fdayyear+"  "+i+": "+yester_steps, Toast.LENGTH_LONG).show();
+            //Toast.makeText(getActivity(), "Count fyear:" + fyear +" fdayyear: " + fdayyear+"  "+i+": "+yester_steps, Toast.LENGTH_LONG).show();
             switch (i){
                 case 0:
                     //Toast.makeText(getActivity(), "Step check: "+yester_steps, Toast.LENGTH_LONG).show();
@@ -315,8 +333,7 @@ previousSpinner = (Spinner) view.findViewById(R.id.spinner2);
 
                         progressOne.setProgress(yester_steps);
                        if( yester_steps%500 == progressOne.getMax())
-                        Toast.makeText(getActivity(),"FDAYYEAR: "+fdayyear,Toast.LENGTH_LONG).show();
-
+                       // Toast.makeText(getActivity(),"FDAYYEAR: "+fdayyear,Toast.LENGTH_LONG).show();
                         dateOne.setText((calendar.get(Calendar.MONTH)+1)+"/" +calendar.get(Calendar.DATE));
                         if(!step_length.equals(DEFAULT)) {
                             distanceOne.setText("Distance: " + String.format("%.4f", (yester_steps * dstep_length)) + " mi");
@@ -461,7 +478,14 @@ previousSpinner = (Spinner) view.findViewById(R.id.spinner2);
 
             }
 
-            calendar.add(Calendar.DAY_OF_YEAR, +i);
+
+            if(fdayyear==0)
+            {
+                calendar.add(Calendar.YEAR,1);
+                fyear = calendar.get(Calendar.YEAR);
+
+            }
+            calendar.add(Calendar.DAY_OF_YEAR, i*multiplier);
 
 //            if(step_length == DEFAULT) {
 //

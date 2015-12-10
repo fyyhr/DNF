@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity/*FragmentActivity*/ implemen
             R.drawable.ic_tab_home,
             R.drawable.ic_tab_his, //Yo, my icon is UUUUGGGLLLEEEE. maybe we'll change it back later
             R.drawable.ic_tab_biometrics,
-            R.drawable.ic_tab_poring
+            //R.drawable.ic_tab_poring
     };
 
     // 11/28 <---
@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity/*FragmentActivity*/ implemen
             mTabLayout.getTabAt(0).setIcon(tabIcons[0]);
             mTabLayout.getTabAt(1).setIcon(tabIcons[1]);
             mTabLayout.getTabAt(2).setIcon(tabIcons[2]);
-            mTabLayout.getTabAt(3).setIcon(tabIcons[3]);
+           // mTabLayout.getTabAt(3).setIcon(tabIcons[3]);
 
     }
 
@@ -198,8 +198,8 @@ public class MainActivity extends AppCompatActivity/*FragmentActivity*/ implemen
                     return SecondFragment.newInstance("2ndFragment", "2");
                 case 2:
                     return ThirdFragment.newInstance("3rdFragment", "Biometrics");
-                case 3:
-                    return Animation.newInstance("4thFragment","Animation");
+                //case 3:
+                //    return Animation.newInstance("4thFragment","Animation");
                 default:
                     return SecFragment.newInstance("FirstFragment", "Main");
             }
@@ -208,7 +208,7 @@ public class MainActivity extends AppCompatActivity/*FragmentActivity*/ implemen
 
         @Override
         public int getCount() {
-            return 4;
+            return 3;
         }
         
 //        public Drawable getPageTitle(int position){

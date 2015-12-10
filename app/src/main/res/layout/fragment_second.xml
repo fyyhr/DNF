@@ -38,9 +38,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Small Text"
                 android:id="@+id/date1"
-                android:layout_weight="0.07" />
+                android:layout_weight="0.07"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="Today" />
 
             <com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar
                 android:layout_width="fill_parent"
@@ -61,7 +63,9 @@
                 android:id="@+id/progressOne"
                 android:layout_below="@+id/textView"
                 android:layout_toRightOf="@+id/textView"
-                android:layout_toEndOf="@+id/textView" />
+                android:layout_toEndOf="@+id/textView"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp" />
 
             <TextView
                 android:textColor="#FFFFFF"
@@ -70,7 +74,9 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Small Text"
                 android:id="@+id/calories1"
-                android:layout_weight="0.07" />
+                android:layout_weight="0.07"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp" />
 
             <TextView
                 android:textColor="#FFFFFF"
@@ -79,7 +85,9 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Small Text"
                 android:id="@+id/distance1"
-                android:layout_weight="0.07" />
+                android:layout_weight="0.07"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp" />
 
         </LinearLayout>
         <View
@@ -101,7 +109,8 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Small Text"
                 android:id="@+id/date2"
-                android:layout_weight="0.07" />
+                android:layout_weight="0.07"
+                android:layout_marginLeft="5dp" />
 
             <com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar
                 android:layout_width="fill_parent"
@@ -121,7 +130,9 @@
                 android:id="@+id/progressTwo"
                 android:layout_below="@+id/textView"
                 android:layout_toRightOf="@+id/textView"
-                android:layout_toEndOf="@+id/textView" />
+                android:layout_toEndOf="@+id/textView"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp" />
 
             <TextView
                 android:textColor="#FFFFFF"
@@ -130,7 +141,9 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Small Text"
                 android:id="@+id/calories2"
-                android:layout_weight="0.07" />
+                android:layout_weight="0.07"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp" />
 
             <TextView
                 android:textColor="#FFFFFF"
@@ -139,7 +152,9 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Small Text"
                 android:id="@+id/distance2"
-                android:layout_weight="0.07" />
+                android:layout_weight="0.07"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp" />
 
         </LinearLayout>
         <View
@@ -161,7 +176,8 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Small Text"
                 android:id="@+id/date3"
-                android:layout_weight="0.07" />
+                android:layout_weight="0.07"
+                android:layout_marginLeft="5dp" />
 
             <com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar
                 android:layout_width="fill_parent"
@@ -181,7 +197,9 @@
                 android:id="@+id/progressThree"
                 android:layout_below="@+id/textView"
                 android:layout_toRightOf="@+id/textView"
-                android:layout_toEndOf="@+id/textView" />
+                android:layout_toEndOf="@+id/textView"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp" />
 
             <TextView
                 android:textColor="#FFFFFF"
@@ -190,7 +208,9 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Small Text"
                 android:id="@+id/calories3"
-                android:layout_weight="0.07" />
+                android:layout_weight="0.07"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp" />
 
             <TextView
                 android:textColor="#FFFFFF"
@@ -199,7 +219,9 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Small Text"
                 android:id="@+id/distance3"
-                android:layout_weight="0.07" />
+                android:layout_weight="0.07"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp" />
 
         </LinearLayout>
         <View
@@ -221,7 +243,9 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Small Text"
                 android:id="@+id/date4"
-                android:layout_weight="0.07" />
+                android:layout_weight="0.07"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp" />
 
             <com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar
                 android:layout_width="fill_parent"
@@ -241,7 +265,9 @@
                 android:id="@+id/progressFour"
                 android:layout_below="@+id/textView"
                 android:layout_toRightOf="@+id/textView"
-                android:layout_toEndOf="@+id/textView" />
+                android:layout_toEndOf="@+id/textView"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp" />
 
             <TextView
                 android:textColor="#FFFFFF"
@@ -250,7 +276,9 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Small Text"
                 android:id="@+id/calories4"
-                android:layout_weight="0.07" />
+                android:layout_weight="0.07"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp" />
 
             <TextView
                 android:textColor="#FFFFFF"
@@ -259,7 +287,9 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Small Text"
                 android:id="@+id/distance4"
-                android:layout_weight="0.07" />
+                android:layout_weight="0.07"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp" />
 
         </LinearLayout>
         <View
@@ -281,7 +311,9 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Small Text"
                 android:id="@+id/date5"
-                android:layout_weight="0.07" />
+                android:layout_weight="0.07"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp" />
 
             <com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar
                 android:layout_width="fill_parent"
@@ -301,7 +333,9 @@
                 android:id="@+id/progressFive"
                 android:layout_below="@+id/textView"
                 android:layout_toRightOf="@+id/textView"
-                android:layout_toEndOf="@+id/textView" />
+                android:layout_toEndOf="@+id/textView"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp" />
 
             <TextView
                 android:textColor="#FFFFFF"
@@ -310,7 +344,9 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Small Text"
                 android:id="@+id/calories5"
-                android:layout_weight="0.07" />
+                android:layout_weight="0.07"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp" />
 
             <TextView
                 android:textColor="#FFFFFF"
@@ -319,7 +355,9 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Small Text"
                 android:id="@+id/distance5"
-                android:layout_weight="0.07" />
+                android:layout_weight="0.07"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp" />
 
         </LinearLayout>
 
