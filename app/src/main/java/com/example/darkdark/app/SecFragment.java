@@ -257,7 +257,7 @@ public class SecFragment extends Fragment implements SensorEventListener{
                     //Toast.makeText(getActivity(), "::"+c1.getMax(), Toast.LENGTH_SHORT).show();
                     //because this is on sensor changed this will do this even when the app isn't open !
                     //so i don't need to worry about color in the next animating function
-                    //Toast.makeText(getActivity(), "TEXTCOUNT!@ "+Integer.parseInt(String.valueOf(textCount.getText()))%c1.getMax(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getActivity( ), "TEXTCOUNT!@ "+Integer.parseInt(String.valueOf(textCount.getText()))%c1.getMax(), Toast.LENGTH_SHORT).show();
                     if (Integer.parseInt(String.valueOf(textCount.getText())) % c1.getMax() == 0) {
                         c1.setProgress(0);
 
@@ -290,7 +290,7 @@ public class SecFragment extends Fragment implements SensorEventListener{
                                 break;
                             default:
                                 colorSelector = 1;
-                                int r =rand.nextInt(255);
+                                int r = rand.nextInt(255);
                                 int g =rand.nextInt(255);
                                 int b = rand.nextInt(255);
 
