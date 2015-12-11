@@ -134,6 +134,7 @@ public class MainActivity extends AppCompatActivity/*FragmentActivity*/ implemen
         super.onResume();
 
 
+
     }
     @Override
     protected void onPause() {

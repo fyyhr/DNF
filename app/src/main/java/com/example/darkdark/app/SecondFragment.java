@@ -49,8 +49,6 @@ public class SecondFragment extends Fragment  {
     private TextRoundCornerProgressBar progressThree;
     private TextRoundCornerProgressBar progressFour;
     private TextRoundCornerProgressBar progressFive;
-    private TextRoundCornerProgressBar progressSix;
-    private TextRoundCornerProgressBar progressSeven;
 
     private TextView textCount;
     private TextView textTotal;
@@ -74,11 +72,6 @@ public class SecondFragment extends Fragment  {
     private TextView distanceFive;
 
 
-    private TextView yester_Miles;
-    private TextView month_Steps;
-    private TextView month_Miles;
-    private TextView life_Steps;
-    private TextView life_Miles;
 
     private TextView tLifeTotal;
 
@@ -119,9 +112,6 @@ public class SecondFragment extends Fragment  {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
         SharedPreferences mPrefs = getActivity().getSharedPreferences("MyData", Context.MODE_PRIVATE);
-        //TODO: retrieve yesterdays data
-        //TODO: add up last months steps (maybe?)
-        //TODO: move lifetime steps to this fragment
     }
 
     @Override
@@ -131,13 +121,7 @@ public class SecondFragment extends Fragment  {
         final View view = inflater.inflate(R.layout.fragment_second,
                 container, false);
 
-//        yester_Steps = (TextView) view.findViewById(R.id.yesterstep);
-//        yester_Miles = (TextView) view.findViewById(R.id.yestermile);
-//        month_Steps = (TextView) view.findViewById(R.id.monthstep);
-//        month_Miles = (TextView) view.findViewById(R.id.monthmile);
-//        life_Steps = (TextView) view.findViewById(R.id.allstep);
-//        life_Miles = (TextView) view.findViewById(R.id.allmile);
-previousSpinner = (Spinner) view.findViewById(R.id.spinner2);
+        previousSpinner = (Spinner) view.findViewById(R.id.spinner2);
 // Create an ArrayAdapter using the string array
 // and a default spinner layout
         final ArrayAdapter<CharSequence> adapter;
@@ -148,15 +132,11 @@ previousSpinner = (Spinner) view.findViewById(R.id.spinner2);
         previousSpinner.setAdapter(adapter);
 
 
-
-
         progressOne = (TextRoundCornerProgressBar) view.findViewById(R.id.progressOne);
         progressTwo = (TextRoundCornerProgressBar) view.findViewById(R.id.progressTwo);
         progressThree = (TextRoundCornerProgressBar) view.findViewById(R.id.progressThree);
         progressFour = (TextRoundCornerProgressBar) view.findViewById(R.id.progressFour);
         progressFive = (TextRoundCornerProgressBar) view.findViewById(R.id.progressFive);
-//        progressSix = (TextRoundCornerProgressBar) view.findViewById(R.id.progressSix);
-//        progressSeven = (TextRoundCornerProgressBar) view.findViewById(R.id.progressSeven);
 
         dateOne = (TextView) view.findViewById(R.id.date1);
         dateTwo = (TextView) view.findViewById(R.id.date2);
@@ -177,39 +157,22 @@ previousSpinner = (Spinner) view.findViewById(R.id.spinner2);
         distanceFive = (TextView) view.findViewById(R.id.distance5);
 
 
-
-
-
-
         previousSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                                      public void onItemSelected(AdapterView<?> parent, View vi,
-                                                                                 int pos, long id) {
-                                                          // An item was selected. You can retrieve the selected item using
-                                                          // parent.getItemAtPosition(pos)
-                                                          if (parent.getItemAtPosition(pos).toString().equals("5 days")) {
-                                                              calculation(view, false);
+            public void onItemSelected(AdapterView<?> parent, View vi,
+            int pos, long id) {
+            // An item was selected. You can retrieve the selected item using
+            // parent.getItemAtPosition(pos)
+            if (parent.getItemAtPosition(pos).toString().equals("5 days")) {
+                calculation(view, false);
+                }
+            }
 
-                                                             // onDestroyView();
-
-                                                          }
-//                                                          if (parent.getItemAtPosition(pos).toString().equals("5 months")) {
-//                                                              calculation(view, true);
-//
-//                                                              //onDestroyView();
-//                                                          }
-                                                      }
-
-                                                      @Override
-                                                      public void onNothingSelected(AdapterView<?> parent) {
-                                                          // Another interface callback
-
-
-                                                      }}
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+        // Another interface callback
+                }
+            }
         );
-
-
-        //lastSteps =
-
         textCount = (TextView) view.findViewById(R.id.count);
         textTotal = (TextView) view.findViewById(R.id.total);
         tLifeTotal = (TextView) view.findViewById(R.id.textLifeTotal);
@@ -237,14 +200,9 @@ previousSpinner = (Spinner) view.findViewById(R.id.spinner2);
             totallifetime=totallifetime1+totallifetime;
             tLifeTotal.setText(""+totallifetime+" Minutes");
 
-        //mStepDetectorSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
-
-
-//        SharedPreferences mPrefs = getActivity().getSharedPreferences("MyData", Context.MODE_PRIVATE);
         return view;
 
 
-       // return inflater.inflate(R.layout.fragment_second, container, false);
     }
 
 
@@ -252,12 +210,10 @@ previousSpinner = (Spinner) view.findViewById(R.id.spinner2);
 
     public void calculation(View p,boolean bMonth) {
 
-        //Toast.makeText(getActivity(), "Calc Accessed", Toast.LENGTH_SHORT).show();
         //have to change all the month+day to day_of_year
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyData", Context.MODE_PRIVATE);
         Calendar calendar = Calendar.getInstance();
 
-        //int year = calendar.get(Calendar.YEAR);1
         int dayyear = calendar.get(Calendar.DAY_OF_YEAR);
 
 
@@ -284,7 +240,6 @@ previousSpinner = (Spinner) view.findViewById(R.id.spinner2);
             calendar.add(Calendar.DAY_OF_YEAR, -i*multiplier);
             fdayyear= calendar.get(Calendar.DAY_OF_YEAR);
 
-           // Toast.makeText(getActivity(), "FDATE: "+fdate, Toast.LENGTH_LONG).show();
 
 
             if(fdayyear==0)
@@ -313,14 +268,11 @@ previousSpinner = (Spinner) view.findViewById(R.id.spinner2);
             // <<<<<----
 
             int yester_steps = sharedPreferences.getInt("Count" + fyear + fdayyear, -1);
-            //Toast.makeText(getActivity(), "Count fyear:" + fyear +" fdayyear: " + fdayyear+"  "+i+": "+yester_steps, Toast.LENGTH_LONG).show();
             switch (i){
                 case 0:
-                    //Toast.makeText(getActivity(), "Step check: "+yester_steps, Toast.LENGTH_LONG).show();
                     if(yester_steps==-1){
                         //add in step_length info.
                         //if default make them invisible
-                        //Toast.makeText(getActivity(), "should be GONE!!!!!!", Toast.LENGTH_SHORT).show();
                         p.findViewById(R.id.date1).setVisibility(View.GONE);
                         p.findViewById(R.id.progressOne).setVisibility(View.GONE);
                         p.findViewById(R.id.calories1).setVisibility(View.GONE);
@@ -333,7 +285,6 @@ previousSpinner = (Spinner) view.findViewById(R.id.spinner2);
 
                         progressOne.setProgress(yester_steps);
                        if( yester_steps%500 == progressOne.getMax())
-                       // Toast.makeText(getActivity(),"FDAYYEAR: "+fdayyear,Toast.LENGTH_LONG).show();
                         dateOne.setText((calendar.get(Calendar.MONTH)+1)+"/" +calendar.get(Calendar.DATE));
                         if(!step_length.equals(DEFAULT)) {
                             distanceOne.setText("Distance: " + String.format("%.4f", (yester_steps * dstep_length)) + " mi");
@@ -346,6 +297,8 @@ previousSpinner = (Spinner) view.findViewById(R.id.spinner2);
                         }
                         else{
                             distanceOne.setText("Distance: "+step_length);
+                            caloriesOne.setText("Calories: "+step_length);
+
                         }
 
 
@@ -358,7 +311,6 @@ previousSpinner = (Spinner) view.findViewById(R.id.spinner2);
                     if(yester_steps==-1){
                         //if default make them invisible
 
-                       // Toast.makeText(getActivity(), "TWO should be GONE!!!!!!", Toast.LENGTH_SHORT).show();
                         p.findViewById(R.id.date2).setVisibility(View.GONE);
                         p.findViewById(R.id.progressTwo).setVisibility(View.GONE);
                         p.findViewById(R.id.calories2).setVisibility(View.GONE);
@@ -382,13 +334,13 @@ previousSpinner = (Spinner) view.findViewById(R.id.spinner2);
                         }
                         else{
                             distanceTwo.setText("Distance: "+step_length);
+                            caloriesOne.setText("Calories: "+step_length);
                         }
 
                     }
                 case 2:
                     if(yester_steps == -1){
                         //if default make them invisible
-                       // Toast.makeText(getActivity(), "THREE should be GONE!!!!!!", Toast.LENGTH_SHORT).show();
                         p.findViewById(R.id.date3).setVisibility(View.GONE);
                         p.findViewById(R.id.progressThree).setVisibility(View.GONE);
                         p.findViewById(R.id.calories3).setVisibility(View.GONE);
@@ -411,6 +363,7 @@ previousSpinner = (Spinner) view.findViewById(R.id.spinner2);
                         }
                         else{
                             distanceThree.setText("Distance: "+step_length);
+                            caloriesOne.setText("Calories: "+step_length);
                         }
 
                     }
@@ -440,6 +393,7 @@ previousSpinner = (Spinner) view.findViewById(R.id.spinner2);
                         }
                         else{
                             distanceFour.setText("Distance: " + step_length);
+                            caloriesOne.setText("Calories: "+step_length);
                         }
 
                     }
@@ -469,6 +423,7 @@ previousSpinner = (Spinner) view.findViewById(R.id.spinner2);
                         }
                         else{
                             distanceFive.setText("Distance: " + step_length);
+                            caloriesOne.setText("Calories: "+step_length);
                         }
 
                     }
@@ -487,45 +442,7 @@ previousSpinner = (Spinner) view.findViewById(R.id.spinner2);
             }
             calendar.add(Calendar.DAY_OF_YEAR, i*multiplier);
 
-//            if(step_length == DEFAULT) {
-//
-//                yester_Miles.setText(DEFAULT);
-//                month_Miles.setText(DEFAULT);
-//                life_Miles.setText(DEFAULT);
-//            }
-//            else {
-//                //int yes_step_count = Integer.parseInt(yester_steps);
-//                int yes_step_count = 1000;
-//                progressOne.setProgressText(yester_steps);
-//                //int tot_step_count = Integer.parseInt(total_steps);
-//                //int mon_step_count = Integer.parseInt(month_steps);
-//                double step_stride = Double.parseDouble(step_length);
-//
-//                double yest_miles = yes_step_count * step_stride;
-//                //double total_miles =  tot_step_count * step_stride;
-//                //double month_miles = mon_step_count * step_stride;
-//
-//                // yester_Miles.setText(String.format("%.2f",yest_miles));
-//                // life_Miles.setText(String.format("%.2f",total_miles));
-//                // month_Miles.setText(String.format("%.2f",month_miles));
-//
-//            }
-
         }
-
-
-
-
-        //String total_steps = sharedPreferences.getString("");
-
-        //String month_steps = sharedPreferences.getString();
-        //life_Steps.setText(total_steps);
-//        yester_Steps.setText(yester_steps);
-        // month_Steps.setText(month_steps);
-
-
-
-
 
 
     }

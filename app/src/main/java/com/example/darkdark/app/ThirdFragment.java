@@ -92,6 +92,12 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
         applyChange.setOnClickListener(this);
         return view;
     }
+    public void onResume() {
+        super.onResume();
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyData", Context.MODE_PRIVATE);
+        show_Weight.setText(sharedPreferences.getString("weight","" ));
+        show_Height.setText(sharedPreferences.getString("height",""));
+    }
 
     public void onClick(View view) {
 
@@ -111,7 +117,7 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
 
                     editor.commit(); //commits the data
                     }
-                    Toast.makeText(getContext(), "data was saved", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getContext(), "data was saved", Toast.LENGTH_LONG).show();
 
                     String height = sharedPreferences.getString("height", DEFAULT); //initialized default height data with key "height"
                     String weight = sharedPreferences.getString("weight", DEFAULT); //initialized default weight data with key "weight"
@@ -127,19 +133,16 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
                     //for testing
                     else {
                           step_length= Float.parseFloat(height) * (0.413 /100)/1609.34;
-                        Toast.makeText(getContext(), "Data Loaded", Toast.LENGTH_SHORT).show();
                         show_Height.setText(height);
                         show_Weight.setText(weight);
 
                     }
 
                     String stepstride_str = String.format("%.2f",step_length);
-                    //Toast.makeText(getContext(), "gettttttt " + stepstride_str, Toast.LENGTH_LONG).show();
                     editor.putString("step_stride", Double.toString(step_length)); //changed to steplength from stepstride_str
                     editor.commit();
                     String stepstride_load = sharedPreferences.getString("step_stride",DEFAULT);
 
-                    //Toast.makeText(getContext(), "gettttttt " + stepstride_load, Toast.LENGTH_LONG).show();
                     if (stepstride_load.equals(DEFAULT)) {
 
                         //step_length = 0;
@@ -150,9 +153,6 @@ public class ThirdFragment extends Fragment implements View.OnClickListener {
                     //for testing
                     else {
 
-                        //Toast.makeText(getContext(), "Data Loaded stepstride_load", Toast.LENGTH_SHORT).show();
-                        //show_Height.setText(height);
-                       // show_Weight.setText(weight);
                         show_StepStride.setText(stepstride_load);
 
                     }
