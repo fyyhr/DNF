@@ -382,13 +382,14 @@ public class SecFragment extends Fragment implements SensorEventListener{
 
 
         Notification.Builder builder = new Notification.Builder(getActivity()); //this to getActivity
-        builder.setContentTitle("Scheduled Notification");
+        builder.setContentTitle("Hey, Listen!");
         builder.setContentText(content);
         builder.setSmallIcon(R.drawable.ic_notif);
 
         if(!(hourofday >=22||hourofday<=5)) {
             Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
             builder.setSound(alarmSound);
+            builder.setLights(0xffcc00cc,1,0);
         }
 
         return builder.build();

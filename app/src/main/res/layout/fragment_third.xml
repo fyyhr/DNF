@@ -21,19 +21,21 @@
         android:id="@+id/editWeight"
         android:hint="Enter Weight (lb)"
         android:layout_above="@+id/editHeight"
-        android:layout_alignStart="@+id/editHeight" />
+        android:layout_alignStart="@+id/editHeight"
+        android:textColorHint="#FFFFFF" />
 
     <EditText
-        android:textColor="#FFFFFF"
+        android:textColor="#DDDDDD"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/editHeight"
-        android:hint="Enter Height"
+        android:hint="Enter Height (in)"
         android:layout_above="@+id/buttonWH"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="31dp" />
+        android:layout_marginStart="31dp"
+        android:textColorHint="#DDDDDD" />
 
     <TextView
         android:textColor="#FFFFFF"
@@ -56,6 +58,7 @@
         android:paddingRight="20dp" />
 
     <TextView
+        android:visibility = "gone"
         android:textColor="#FFFFFF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
